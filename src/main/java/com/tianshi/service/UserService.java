@@ -8,4 +8,7 @@ import com.tianshi.domain.User;
 public interface UserService {
     User selectByPrimaryKey(Integer id) ;
 
+    User getByUsername(String username);
+    Integer  checkLogin(String username,String password);
+
 }

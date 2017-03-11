@@ -12,6 +12,9 @@
     <result column="company" property="company" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
+
+
+
   <sql id="Base_Column_List" >
     id, name, gender, phone, nickname, identity, username, company, password
   </sql>
@@ -20,6 +23,12 @@
     <include refid="Base_Column_List" />
     from user_info
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where username = #{username,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user_info

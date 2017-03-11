@@ -30,5 +30,20 @@ public class UserController extends baseController {
         return this.sendResponse() ;
     };
 
+/**
+ * 登录
+ */
 
+    @RequestMapping("/login")
+    @ResponseBody
+    public String chekLogin(HttpServletRequest request,Model model){
+        String username = request.getParameter("username") ;
+        String passwd = request.getParameter("passwd") ;
+        //检查登录看是否成功 成功返回1 失败 0
+        Integer status = userService.checkLogin(username,passwd);
+        User user =userService.getByUsername(username) ;
+        this.responseObj.put("status",status) ;
+        this.responseObj.put("password",user.getPassword()) ;
+        return this.sendResponse() ;
+    }
 }
