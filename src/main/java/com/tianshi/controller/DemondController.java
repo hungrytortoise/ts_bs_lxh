@@ -25,7 +25,7 @@ public class DemondController {
     @Resource
     private DemondService demondService ;
 
-    //展示全部  看下需要什么格式的转换成json
+    //展示全部 按照时间排序取出前6
     @RequestMapping("/getAll")
     @ResponseBody
     public  String getDemonds(){

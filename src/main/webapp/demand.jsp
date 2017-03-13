@@ -440,18 +440,17 @@
                     var datainfo = data[i].data;
                     var time = data[i].time;
                     var term = data[i].term;
-                    var minmoney = data[i].min_money;
-                    var maxmoney = data[i].max_money;
+                    var minmoney = data[i].minMoney;
+                    var maxmoney = data[i].maxMoney;
                     var target = data[i].target;
-
                     var content = "<div class='col-md-2'>" +
                         "<a href='http://demond/showdetail?iid=" + id + "target='_blank'>" +
                         "<p class='tit he_f2 ellipsis' style='word-wrap: break-word;'>" + owner + "</p>" +
                         "<span class='he_f2 ellipsis' style='word-wrap: break-word;'>" + datainfo + "</span>" +
                         "<p class='he_f1 ellipsis is-truncated' style='word-wrap: break-word;'>" + target + "</p>" +
                         "</p>" + time + "</p>" +
-                        "<p class='he_f3'>最新进展：客服发表评论</p>" + "</a></div>"
-                    html.append(content)
+                        "<p class='he_f3'>最新进展：客服发表评论</p>" + "</a></div>" ;
+                    html+=content
                 }
                 $("#showinfo").html(html)
 
