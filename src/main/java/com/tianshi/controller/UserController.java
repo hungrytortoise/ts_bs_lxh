@@ -4,17 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.tianshi.base.baseController;
 import com.tianshi.domain.User;
 import com.tianshi.service.UserService;
-import com.tianshi.tools.Jlog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -31,7 +27,6 @@ public class UserController extends baseController {
     @ResponseBody
     public String getUserById(HttpServletRequest request, Model model){
         String id = request.getParameter("id");
-        System.out.println("_________________________________");
         Integer id2 = Integer.parseInt(id) ;
         User user = userService.selectByPrimaryKey(id2) ;
         this.responseObj.put("company",user.getCompany()) ;

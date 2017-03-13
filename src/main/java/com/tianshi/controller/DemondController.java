@@ -1,12 +1,13 @@
 package com.tianshi.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.tianshi.domain.Demond;
 import com.tianshi.service.DemondService;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,15 +27,16 @@ public class DemondController {
 
     //展示全部  看下需要什么格式的转换成json
     @RequestMapping("/getAll")
-    public  JSONObject getDemonds(){
+    @ResponseBody
+    public  String getDemonds(){
         List<Demond> list = null ;
         list = demondService.getall() ;
         //将list转换成一个json 对象
         JSONArray jsonArray= JSONArray.fromObject(list) ;
-        JSONObject jsonObject = new JSONObject() ;
-        jsonObject.put("data",jsonArray.toString()) ;
-        System.out.println(jsonObject.toString());
-        return  jsonObject ;
+//        JSONObject jsonObject = new JSONObject() ;
+//        jsonObject.put("data",jsonArray.toString()) ;
+        System.out.println(jsonArray.toString());
+        return  jsonArray.toString() ;
 
     }
     //增加一条需求//TODO
