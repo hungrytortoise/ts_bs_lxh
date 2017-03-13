@@ -21,14 +21,30 @@
                 <a href="" class="top_lis" target="_blank">项目需求</a>
                 <a href="" class="top_lis" target="_blank">技术成果</a>
             </div>
+
             <div id="zhiye-navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!--<a href="register.html"><span>注册</span></a>-->
+
+                    <li style='border-right:none;margin-top: 10px'>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="top_lis dropdown-toggle" data-toggle="dropdown" style="font-size: 16px;border-right: none;margin-left: 0px;margin-top:-5px;"><span id="login_user"></span><i class="glyphicon glyphicon-list" style="margin-top:-1px;vertical-align: middle;"></i></a>
+                            <ul class="dropdown-menu header_menu" role="menu">
+                                <li><a href="/user/home.do">学术主页</a></li>
+                                <li>
+                                    <a href="/pc/sin/issues.do">
+                                        <span>我的需求</span></a></li>
+                                <li><a href="javascript:;" class="change_he" onclick="return changeSin('sin');"><span><i class="glyphicon glyphicon-circle-arrow-right"></i>客户场景</span></a></li>
+                                <li><a href="/index2.jsp"><span>退出</span></a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <div id="logintag"><li class="active"><a href="login.jsp"><span>登录</span></a></li></div>>
+
                 </ul>
+                <span class="fw_phone">服务热线：400-400-400</span>
             </div>
+        </div>
+
+
         </div>
     </nav>
 </header>
@@ -228,6 +244,25 @@
 
 <!-- Main JS -->
 <script src="./js/main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var html ="" ;
+                html=data.data+"&nbsp&nbsp";
+                $("#login_user").html(html);
+
+            },
+
+        })
+        
+    })
+
+
+</script>
 
 </body>
 </html>

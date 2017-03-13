@@ -1,7 +1,7 @@
 package com.tianshi.domain;
 
 public class User {
-    private Integer id;
+    private String id;
 
     private String name;
 
@@ -19,11 +19,11 @@ public class User {
 
     private String password;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -85,6 +85,22 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone='" + phone + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", identity=" + identity +
+                ", username='" + username + '\'' +
+                ", company='" + company + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public void setPassword(String password) {

@@ -202,8 +202,9 @@
 		featureIconsWayPoint();
 		productsWayPoint();
 		clientsWayPoint();
-		
-		
+
+
+
 	});
 
 

@@ -31,13 +31,29 @@ public class UserServiceImpl implements UserService {
      */
     public Integer checkLogin(String username, String password) {
         //更具username获取user
-        Integer status = 0 ;
+        Integer status = 1 ;
         User user = getByUsername(username) ;
         if(user!=null ){
             String passwordInDataBase = user.getPassword() ;
-            status = passwordInDataBase.equals(password)?1:0 ;
+            status = passwordInDataBase.equals(password)?0:1 ;
 
         }
+        return status;
+    }
+
+    public Integer register(User user) {
+        Integer status =1 ; //用户名重复
+        String username =user.getUsername() ;
+        User user2 = userDao.getByUsername(username);
+        System.out.println(user.toString());
+
+        if(user2==null){
+          //charu
+            System.out.println(user.toString());
+            userDao.insert(user) ;
+            status=0 ;
+        }
+
         return status;
     }
 

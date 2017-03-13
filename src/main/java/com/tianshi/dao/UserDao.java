@@ -4,7 +4,7 @@ package com.tianshi.dao;
 import com.tianshi.domain.User;
 
 public interface UserDao {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(User record);
 

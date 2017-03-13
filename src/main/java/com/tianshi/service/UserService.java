@@ -11,4 +11,5 @@ public interface UserService {
     User getByUsername(String username);
     Integer  checkLogin(String username,String password);
 
+    Integer register(User user);
 }

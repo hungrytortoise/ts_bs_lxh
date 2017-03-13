@@ -26,6 +26,7 @@
             <div class="col-md-12">
                 <span style="color:#0F63A8;font-size:18px;">登录系统</span>
                 <p></p>
+                <form id="login">
                 <div class="form-group">
                     <input type="phone" class="form-control" id="phone" placeholder="请输入注册邮箱或手机号">
                 </div>
@@ -38,8 +39,9 @@
                 </div>
                 <br />
                 <input type="submit" value="登录" class="btn btn-success btn-block btn-lg bg_color" id="buttons_submit"/>
-                <a href="" class="fot_rig">无账号，去注册 </a>
-                <a href="index.html" class="fot_left">首页</a>
+                </form>
+                <a href="register.jsp" class="fot_rig">无账号，去注册 </a>
+                <a href="index2.jsp" class="fot_left">首页</a>
             </div>
         </div>
         <ul class="login_type">
@@ -112,17 +114,17 @@
                 $.ajax({
                     type: "POST",
                     dataType:"json",
-                    url: "/api/pc-login",
-                    data:{"phone":phone,"password":password,"code":code,"lStep":lStep},
+                    url: "/user/login",
+                    data:{"phone":phone,"password":password},
                     success: function(data){
                         console.log(data);
-                        if(data.code==0){
-                            layer_tips(data.data);
-
-                            if(lStep=="sin"){
-                                window.location.href="/user/flow.do";
-                            }else{
-                                window.location.href="/pc/issues.do";
+                        if(data.code==0){  //成功  区分身份
+                            layer_tips(data.data) ;
+                            if(lStep=="3"){
+                                window.location.href="/index.jsp";
+                            }
+                            else{
+                                window.location.href="/index.jsp";
                             }
                         }else{
                             layer_tips(data.data);
@@ -153,5 +155,6 @@
         });
     })
 </script>
+<script src="./js/main.js"></script>
 </body>
 </html>
