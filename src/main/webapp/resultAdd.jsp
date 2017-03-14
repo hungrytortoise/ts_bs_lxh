@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>填写需求详情</title>
+	<title>填写技术成果详情</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -367,38 +367,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	
-	<div class="dialog bp-dialog disp" >
-		<h1>提交可转换成果或商业计划书：</h1>
-			<div class="inp_form top_ls" style="margin-top:30px;margin-bottom:0;">
-				<div class="tit_bp_type">
-					<label>请选择提交的内容类型</label>
-					<ul>
-						<li class="active">可转换成果</li>
-						<li>商业计划书</li>
-					</ul>
-				</div>
-				<div class="lo_re_inp_two">
-					<div class="lo_re_inp">
-						<input type="text" class="tit_bp_title" value="" placeholder="请输入标题" />
-					</div>
-					<div class="lo_re_inp">
-						<input type="text" class="tit_bp_keyword" value="" placeholder="请输入关键词，空格分开多个关键词" />
-					</div>
-					<div class="lo_re_inp">
-						<textarea rows="5" class="tit_bp_topic" placeholder="请输入摘要信息"></textarea>
-					</div>
-					<div class="lo_re_inp">
-						<a href="javascript:;" onclick="bp_upload_image()"><img src="/img/uplas.png" style="width:30px;"/>
-						<span class="bp-upload-word-span">上传文件(20MB以内的文件或图片）</span>
-						</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<a class="send">提交</a>
-			</div>
-		<div class="clear"></div>
-	</div>
+
 	
 	<form action="/api/bp-upload" enctype="multipart/form-data" method="post" class="bp_file_upload">
 		<input type="file" class="hide bp_file" name="file" id="bp-upload-multipart-id" />
@@ -437,17 +406,40 @@ $(document).ready(function() {
 				<div class="clear" style="height:1px;"></div>
 				
 	            <div class="form-group res_mm group_lef">
-				    <span>需求标题</span><input type="text" class="form-control" id="title" placeholder="请输入需求标题" value="">
+				    <span>标题</span><input type="text" class="form-control" id="title" placeholder="请输入需求标题" value="">
 				</div>
 
 	            <div class="form-group res_mm group_lef">
 				    <span>关键词</span><input type="text" class="form-control" id="keyword" placeholder="3个左右，逗号','隔开" value="">
 				</div>
-		  
+
+				<div class="form-group res_mm group_lef">
+					<span>融资金额</span><input type="text" class="form-control" id="financing_money" placeholder="3个左右，逗号','隔开" value="">
+				</div>
+				<div class="form-group res_mm group_lef">
+					<span>融资占比</span><input type="text" class="form-control" id="financing_percent" placeholder="3个左右，逗号','隔开" value="">
+				</div>
+				<div class="form-group res_mm group_lef">
+					<span>合作方式</span><input type="text" class="form-control" id="work_method" placeholder="3个左右，逗号','隔开" value="">
+				</div>
+				<div class="form-group res_mm group_lef">
+					<span>投入产出</span><input type="text" class="form-control" id="pay_out" placeholder="3个左右，逗号','隔开" value="">
+				</div>
+				<div class="form-group res_mm group_lef">
+					<span>专利信息</span><input type="text" class="form-control" id="patent" placeholder="3个左右，逗号','隔开" value="">
+				</div>
 	            <div class="form-group res_mm group_lef">
-	                <span>请详细描述需求</span><textarea class="form-control" placeholder="友情提示：可填写 目前技术工艺的参数，性能等，目前的技术问题，需求场景等信息。注意保护机密信息哦" id="detail" rows="3"></textarea>
+	                <span>项目简介</span><textarea class="form-control" placeholder="友情提示：可填写 目前技术工艺的参数，性能等，目前的技术问题，需求场景等信息。注意保护机密信息哦" id="info" rows="3"></textarea>
 	            </div>
-	            
+				<div class="form-group res_mm group_lef">
+					<span>技术信息</span><input type="text" class="form-control" id="t_info" placeholder="3个左右，逗号','隔开" value="">
+				</div>
+				<div class="form-group res_mm group_lef">
+					<span>技术优势</span><input type="text" class="form-control" id="t_advance" placeholder="3个左右，逗号','隔开" value="">
+				</div>
+				<div class="form-group res_mm group_lef">
+					<span>市场信息</span><input type="text" class="form-control" id="market" placeholder="3个左右，逗号','隔开" value="">
+				</div>
 
 			 		<div id="wrapper">
 						<div class="page-body">

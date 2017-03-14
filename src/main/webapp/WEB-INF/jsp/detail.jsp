@@ -54,6 +54,7 @@
     <div class="row">
         <div class="col-md-10 ma_center bs_co_ff">
             <h1 class="issue_h1">${detail.title}</h1>
+            <a id="btnInterest" class="btn btn-danger" style="float:right;visibility:hidden ;" >删除</a>
             <div class="iss_floor1 iss_floor2">
                 <div class="row">
                     <div class="col-md-4">
@@ -142,6 +143,50 @@
         </div>
     </div>
 </div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+//权限检查
 
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                dataType:"json",
+                url: "/user/getLoginUsername",
+                success:function (data) {
+                    var idendity = data.idendity ;
+                    var username = data.username ;
+                    var owner = "${detail.owner}"
+                    if (idendity=='1' && owner==username){
+                        var ele = document.getElementById("btnInterest")
+                        ele.style.visibility="visible";
+                    }
+
+                }
+
+
+            })
+        $("#btnInterest").click(function () {
+            alert("dianjileshanchu")
+            //获取id
+            $.ajax({
+                type: "POST",
+                dataType:"json",
+                url: "/result/delete",
+                data:{id:"${detail.id}"},
+                success :function (data) {
+                    var code = data.code ;
+                    if(code==0){
+                        alert("成功删除")
+                        parent.location.href ="/"
+                    }
+                }
+            })
+        })
+    })
+
+</script>
 </body>
 </html>

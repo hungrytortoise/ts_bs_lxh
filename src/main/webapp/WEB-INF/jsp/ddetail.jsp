@@ -32,11 +32,7 @@
 </head>
 <h1>${detail.keyword}</h1>>
 <body class="gd_tops" ontouchstart>
-<script type="text/javascript">
-    $(document).on(function(){
-      alert("1111")
-	});
-	</script>
+
 	
 
 

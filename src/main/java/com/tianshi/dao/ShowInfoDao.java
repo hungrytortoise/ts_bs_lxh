@@ -5,7 +5,7 @@ import com.tianshi.domain.ShowInfo;
 import java.util.List;
 
 public interface ShowInfoDao {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(ShowInfo record);
 
@@ -18,4 +18,5 @@ public interface ShowInfoDao {
     int updateByPrimaryKey(ShowInfo record);
 
     List<ShowInfo> getAllRes();
+    List<ShowInfo> getAllByUserName (String username) ;
 }

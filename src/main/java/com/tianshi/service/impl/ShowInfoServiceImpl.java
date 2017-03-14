@@ -29,4 +29,12 @@ public class ShowInfoServiceImpl implements ShowInfoService {
 
         return showInfoDao.selectByPrimaryKey(id2);
     }
+
+    public void deleteByPrimaryKey(String id) {
+        showInfoDao.deleteByPrimaryKey(id) ;
+    }
+
+    public List<ShowInfo> getAllByUsername(String username) {
+        return showInfoDao.getAllByUserName(username);
+    }
 }

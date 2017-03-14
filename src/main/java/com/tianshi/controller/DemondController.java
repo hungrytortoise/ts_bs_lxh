@@ -27,7 +27,7 @@ public class DemondController extends baseController {
     @Resource
     private DemondService demondService ;
 
-    //展示全部 按照时间排序取出前6
+    //展示全部
     @RequestMapping("/getAll")
     @ResponseBody
     public  String getDemonds(){
@@ -77,8 +77,10 @@ public class DemondController extends baseController {
         demond.setPhone(phone) ;
         demond.setOwner(this.login_username);
         demondService.addDemond(demond) ;
-
-        return null ;
+        //返回状态给前端
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0) ;
+        return jsonObject.toJSONString() ;
     }
     //删除  TODO
     @RequestMapping("/delete")

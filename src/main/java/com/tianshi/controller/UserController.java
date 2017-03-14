@@ -50,7 +50,6 @@ public class UserController extends baseController {
             data="登录成功，欢迎"+user.getNickname() ;
             this.login_nickname =user.getNickname() ;
             this.login_username =user.getUsername() ;
-            System.out.println("登录的用户名为"+login_username);
             this.login_userid=user.getId();
             this.user_idendity =user.getIdentity();
             lStep = user.getIdentity().toString() ;

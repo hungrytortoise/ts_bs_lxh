@@ -224,8 +224,11 @@
             url: "/user/getLoginUsername",
             success:function (data) {
                 var username = data.data
+                var idendity =data.idendity ;
                 if (username==''){
-                    alert("没有权限，未登录！！")
+                    alert("请先登录")
+                }else if (idendity!=2){
+                    alert("没有权限")
                 }
 
             }

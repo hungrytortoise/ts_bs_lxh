@@ -11,4 +11,8 @@ public interface ShowInfoService {
     List<ShowInfo> getAll();
 
     ShowInfo selectByPrimaryKey(String id);
+
+    void deleteByPrimaryKey(String id);
+
+    List<ShowInfo> getAllByUsername(String username);
 }

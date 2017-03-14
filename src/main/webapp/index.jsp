@@ -18,8 +18,9 @@
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
                 <a class="navbar-brand" href="/">网站标题（自定义）</a>
-                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod">我的需求</a>
-                <a href="" class="top_lis" target="_blank">技术成果</a>
+                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod">需求管理</a>
+                <a href="../resultManage.jsp" class="top_lis" target="_blank">技术成果管理</a>
+                <a href="../" class="top_lis" target="_blank">人员管理</a>
             </div>
 
             <div id="zhiye-navbar" class="navbar-collapse collapse">
