@@ -1,13 +1,14 @@
 package com.tianshi.dao;
 
 import com.tianshi.domain.Demond;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface DemondDao {
     int deleteByPrimaryKey(String id);
 
-    int insert(Demond record);
+    int insert( Demond record);
 
     int insertSelective(Demond record);
 
@@ -19,4 +20,6 @@ public interface DemondDao {
 
     int updateByPrimaryKey(Demond record);
     List<Demond> getAll() ;
+
+    List<Demond> getAllById(@Param("username") String username);
 }

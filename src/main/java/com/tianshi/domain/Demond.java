@@ -14,6 +14,24 @@ public class Demond {
     private String cKind;
 
     private String term;
+    private String company ;
+    private String phone ;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
     @Override
     public String toString() {

@@ -26,7 +26,10 @@ public class baseController {
 	protected Map<String,String> traceLog;
 	protected JSONObject responseObj;
 	protected JSONObject authInfo;
-	
+	public   static String  login_username = "" ;
+	public   static String  login_nickname = "" ;
+	public  static String login_userid="" ;
+	public   Integer user_idendity=3 ; //默认pt用户
 	@Autowired(required = false)
 	public HttpServletRequest request;
 

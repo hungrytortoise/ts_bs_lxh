@@ -2,6 +2,8 @@ package com.tianshi.dao;
 
 import com.tianshi.domain.ShowInfo;
 
+import java.util.List;
+
 public interface ShowInfoDao {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ShowInfoDao {
     int updateByPrimaryKeySelective(ShowInfo record);
 
     int updateByPrimaryKey(ShowInfo record);
+
+    List<ShowInfo> getAllRes();
 }

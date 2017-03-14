@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
                 <a class="navbar-brand" href="/">网站标题（自定义）</a>
-                <a href="../demand.jsp" class="top_lis" target="_blank">项目需求</a>
+                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod">我的需求</a>
                 <a href="" class="top_lis" target="_blank">技术成果</a>
             </div>
 
@@ -138,7 +138,7 @@
         <div class="table">
             <div class="table-cell table-cell2">
                 <h1 class="tist">最新的科技研发成果 <a href="">...</a></h1>
-                <div class="table_sec">
+                <div class="table_sec" id="showres">
                     <div class="table_cell_sec">
                         <a href="detail.html" target="_blank">
                             <h2 class=""><em class="ico_bg_imgs hb"></em>可完全生物降解塑料PBS产业化及其应用</h2>
@@ -165,7 +165,7 @@
 
                 </div>
                 <h1 class="tist">最新提交的研发需求<a href="/">...</a></h1>
-                <div class="table_sec">
+                <div class="table_sec" id="showinfo">
 
                     <div class="table_cell_sec">
                         <a href=""
@@ -245,6 +245,24 @@
 <!-- Main JS -->
 <script src="./js/main.js"></script>
 <script type="text/javascript">
+
+    $("#mydemod").click(function () {
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+
+                 var idendity=data.idendity ;
+                 if(idendity!==2){
+                     alert("仅限企业用户，你没有权限")
+                 }
+
+
+            },
+        })
+    })
+
     $(document).ready(function () {
         $.ajax({
             type: "POST",
@@ -259,6 +277,101 @@
 
         })
         
+    })
+
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/demond/getAll",
+            success:function (data) {
+                var html ="" ;
+                for(var i=0;i<data.length;i++) {
+
+                    var id = data[i].id;
+                    var owner = data[i].owner;
+                    var keyword = data[i].keyword;
+                    var ckind = data[i].cKind;
+                    var company = data[i].company ;
+                    var datainfo = data[i].data;
+                    var time2 = data[i].time.time;
+                    //将时间戳转换成时间的string
+                    var newdate = new Date();
+                    newdate.setTime(time2);
+                    var outTime = newdate.toLocaleDateString() ;
+                    var term = data[i].term;
+                    var minmoney = data[i].minMoney;
+                    var maxmoney = data[i].maxMoney;
+                    var target = data[i].target;
+                    var content = "<div class='table_cell_sec'>" +
+                        "<a href='/demond/showdetail?id=" + id + "'>" +
+                        "<h2 class=''><em class='ico_bg_imgs hb'></em>"+ckind+"</h2>"+
+                        "<span class='he_f2 he_f3' style='color:#999 !important;'>" + company + "</span>" +
+                        "<span class='he_f2'>" + target.substring(0,20)+"..." + "</span>" +
+                        "<p class='he_f2' style='word-wrap: break-word;'>" + datainfo.substring(0,20)+"..." + "</p>" +
+                        "<p class='he_f2 he_f3'>" + outTime + "</p>" +
+                        "<p class='he_f2'>最新进展：客服发表评论</p>" + "</a></div>" ;
+                    html+=content
+
+                }
+
+
+                $("#showinfo").html(html)
+
+            },
+            error:function (data) {
+            },
+
+        })
+
+    })
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/result/getAll",
+            success:function (data) {
+                var html ="" ;
+                for(var i=0;i<data.length;i++) {
+
+                    var id = data[i].id;
+                    var title = data[i].title;
+                    var info = data[i].info;
+                    var time2 = data[i].time.time;
+                    //将时间戳转换成时间的string
+                    var newdate = new Date();
+                    newdate.setTime(time2);
+                    var outTime = newdate.toLocaleDateString() ;
+                    var term = data[i].term;
+                    var minmoney = data[i].minMoney;
+                    var maxmoney = data[i].maxMoney;
+                    var target = data[i].target;
+                    var content = "<div class='table_cell_sec'>"+
+                        "<a href='/result/showDetail?id="+id+"'>"+
+                        "<h2 class=''><em class='ico_bg_imgs hb'></em>"+title+"</h2>"+
+                        " <p class='he_f2'>"+info.substring(0,20)+"..."+"</p>"+
+                        "<p>时间："+outTime+"</p>"+"</a></div>"
+                    html+=content
+
+
+                }
+
+
+                $("#showres").html(html)
+
+            },
+            error:function (data) {
+            },
+
+        })
+
+
+
     })
 
 

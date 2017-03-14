@@ -8,17 +8,17 @@
     <title>项目需求</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/demo.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/demo.css">
     <!-- Modernizr JS -->
-    <script charset="utf-8" src="./js/v.js"></script>
-    <script src="./js/modernizr-2.6.2.min.js"></script>
+    <script charset="utf-8" src="../js/v.js"></script>
+    <script src="../js/modernizr-2.6.2.min.js"></script>
     <!--[if lt IE 9]>
-    <script src="./js/respond.min.js"></script>
+    <script src="../js/respond.min.js"></script>
     <![endif]-->
     <!-- 网易七鱼的客服代码 -->
-    <link rel="stylesheet" type="text/css" href="./css/qiyu-kf.css">
-    <link rel="stylesheet" href="./css/layer.css" id="layui_layer_skinlayercss">
+    <link rel="stylesheet" type="text/css" href="../css/qiyu-kf.css">
+    <link rel="stylesheet" href="../css/layer.css" id="layui_layer_skinlayercss">
 
 </head>
 <body class="">
@@ -123,7 +123,7 @@
 
 <div class="add_floor ng_col">
     <div class="table">
-        <a href="http://www.scientistin.com/pc/new-issue.do" class="table-cell table-cell-add">
+        <a href="demondAdd.jsp" class="table-cell table-cell-add">
             <span class="add_issue"><em class="glyphicon glyphicon-plus"></em>提交需求</span>
         </a>
     </div>
@@ -401,15 +401,15 @@
     </div>
 </div>
 
-<script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
 <!-- Owl carousel -->
-<script src="./js/owl.carousel.min.js"></script>
-<script src="./js/jquery.dotdotdot.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.dotdotdot.min.js"></script>
 
-<script src="./js/layer.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/style.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script type="text/javascript">
@@ -428,7 +428,7 @@
         $.ajax({
             type: "POST",
             dataType:"json",
-            url: "/demond/getAll",
+            url: "/demond/getAllByUsername",
             success:function (data) {
                 var html ="" ;
                 for(var i=0;i<data.length;i++) {
@@ -438,19 +438,24 @@
                     var keyword = data[i].keyword;
                     var ckind = data[i].cKind;
                     var datainfo = data[i].data;
-                    var time = data[i].time;
+                    var time2 = data[i].time.time;
+                    //将时间戳转换成时间的string
+                    var newdate = new Date();
+                    newdate.setTime(time2);
+                    var outTime = newdate.toLocaleDateString() ;
                     var term = data[i].term;
                     var minmoney = data[i].minMoney;
                     var maxmoney = data[i].maxMoney;
                     var target = data[i].target;
                     var content = "<div class='col-md-2'>" +
-                        "<a href='http://demond/showdetail?iid=" + id + "target='_blank'>" +
+                        "<a href='/demond/showdetail?id=" + id + "'>" +
                         "<p class='tit he_f2 ellipsis' style='word-wrap: break-word;'>" + owner + "</p>" +
-                        "<span class='he_f2 ellipsis' style='word-wrap: break-word;'>" + datainfo + "</span>" +
-                        "<p class='he_f1 ellipsis is-truncated' style='word-wrap: break-word;'>" + target + "</p>" +
-                        "</p>" + time + "</p>" +
+                        "<span class='he_f2 ellipsis' style='word-wrap: break-word;'>" + target.substring(0,20)+"..." + "</span>" +
+                        "<p class='he_f1 ellipsis is-truncated' style='word-wrap: break-word;'>" + datainfo.substring(0,20)+"..." + "</p>" +
+                        "<p>" + outTime + "</p>" +
                         "<p class='he_f3'>最新进展：客服发表评论</p>" + "</a></div>" ;
                     html+=content
+
                 }
                 $("#showinfo").html(html)
 

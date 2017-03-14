@@ -19,8 +19,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/user")
 public class UserController extends baseController {
-    public  static String  login_usernmae = "" ;
-    public static String login_userid="" ;
+
     @Resource
     private UserService userService ;
     @RequestMapping("/getById")
@@ -49,8 +48,11 @@ public class UserController extends baseController {
         if(status==0){
             User user = userService.getByUsername(phone);
             data="登录成功，欢迎"+user.getNickname() ;
-            login_usernmae =user.getNickname() ;
-            login_userid=user.getId();
+            this.login_nickname =user.getNickname() ;
+            this.login_username =user.getUsername() ;
+            System.out.println("登录的用户名为"+login_username);
+            this.login_userid=user.getId();
+            this.user_idendity =user.getIdentity();
             lStep = user.getIdentity().toString() ;
         }
         System.out.println(status);
@@ -98,7 +100,9 @@ public class UserController extends baseController {
     @ResponseBody
     public String getLoginUsername (){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",login_usernmae) ;
+        jsonObject.put("data",login_nickname) ;
+        jsonObject.put("username",login_username) ;
+        jsonObject.put("idendity",user_idendity) ;
       return   jsonObject.toJSONString() ;
     };
 }

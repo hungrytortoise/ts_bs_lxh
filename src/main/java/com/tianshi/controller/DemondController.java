@@ -2,17 +2,19 @@ package com.tianshi.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.tianshi.base.baseController;
 import com.tianshi.domain.Demond;
 import com.tianshi.service.DemondService;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.*;
 
 
 /**
@@ -21,7 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/demond")
-public class DemondController {
+public class DemondController extends baseController {
     @Resource
     private DemondService demondService ;
 
@@ -35,22 +37,68 @@ public class DemondController {
         JSONArray jsonArray= JSONArray.fromObject(list) ;
 //        JSONObject jsonObject = new JSONObject() ;
 //        jsonObject.put("data",jsonArray.toString()) ;
-        System.out.println(jsonArray.toString());
         return  jsonArray.toString() ;
 
     }
-    //增加一条需求//TODO
+    @RequestMapping("/getAllByUsername")
+    @ResponseBody
+    public  String getDemondsById(){
+        List<Demond> list = null ;
+        list = demondService.getallByid(this.login_username) ;
+        System.out.println("登录的用户名是;"+this.login_username);
+        //将list转换成一个json 对象
+        JSONArray jsonArray= JSONArray.fromObject(list) ;
+//        JSONObject jsonObject = new JSONObject() ;
+//        jsonObject.put("data",jsonArray.toString()) ;
+        return  jsonArray.toString() ;
+
+    }
+    //"detail":detail,"title":title,"keyword":keyword,"company":company,"phone":phone
     @RequestMapping("/add")
-    public String add(){
+    @ResponseBody
+    public String add(String detail,String title,String keyword,String company,String phone){
+        //创建对象
+        System.out.println("fangwendaole");
+        Demond demond = new Demond() ;
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        demond.setTime(timestamp);
+
+        String uuid = UUID.randomUUID().toString();
+        demond.setId(uuid);
+        demond.setcKind("未填写");
+        demond.setCompany(company);
+        demond.setKeyword(keyword);
+        demond.setTerm("30天");
+        demond.setMaxMoney("待定");
+        demond.setMinMoney("待定");
+        demond.setData(detail);
+        demond.setTarget(title);
+        demond.setPhone(phone) ;
+        demond.setOwner(this.login_username);
+        demondService.addDemond(demond) ;
 
         return null ;
     }
     //删除  TODO
     @RequestMapping("/delete")
-    public String delete(HttpServletRequest request){
-        String id = request.getParameter("id") ;
-        demondService.deleteByPrimaryKey(id) ;
+    @ResponseBody
+    public String delete(String id){
 
-        return null ;
+        demondService.deleteByPrimaryKey(id) ;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status",1) ;
+        return jsonObject.toString() ;
     }
+    @RequestMapping("/showdetail")
+    public  ModelAndView getDetail(HttpServletRequest request){
+        String id = request.getParameter("id");
+       Demond demond = demondService.selectByPrimaryKey(id) ;
+        Map<String,Demond> map = new HashMap<String, Demond>() ;
+        map.put("detail",demond) ;
+        return  new ModelAndView("ddetail",map) ;
+
+
+    }
+
 }

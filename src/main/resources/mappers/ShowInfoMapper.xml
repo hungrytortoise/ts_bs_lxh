@@ -23,6 +23,11 @@
     id, title, stage, time, keyword, financing_money, financing_percent, work_method, 
     pay_out, patent, info, t_info, market, t_advance, owner, tag
   </sql>
+  <select id="getAllRes" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from show_info
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

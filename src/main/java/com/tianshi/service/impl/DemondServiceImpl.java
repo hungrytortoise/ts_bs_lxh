@@ -2,6 +2,7 @@ package com.tianshi.service.impl;
 
 import com.tianshi.dao.DemondDao;
 import com.tianshi.domain.Demond;
+import com.tianshi.domain.ShowInfo;
 import com.tianshi.service.DemondService;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,17 @@ public class DemondServiceImpl implements DemondService {
 
     public void deleteByPrimaryKey(String id) {
         demondDao.deleteByPrimaryKey(id) ;
+    }
+
+    public List<Demond> getallByid(String username) {
+        return demondDao.getAllById(username);
+    }
+
+    public Demond selectByPrimaryKey(String id) {
+        return demondDao.selectByPrimaryKey(id);
+    }
+
+    public void addDemond(Demond demond) {
+        demondDao.insert(demond) ;
     }
 }

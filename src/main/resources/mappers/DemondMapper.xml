@@ -11,12 +11,14 @@
     <result column="min_money" property="minMoney" jdbcType="VARCHAR" />
     <result column="max_money" property="maxMoney" jdbcType="VARCHAR" />
     <result column="target" property="target" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.tianshi.domain.Demond" extends="BaseResultMap" >
     <result column="data" property="data" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, owner, time, keyword, c_kind, term, min_money, max_money, target
+    id, owner, time, keyword, c_kind, term, min_money, max_money, target,company,phone
   </sql>
   <sql id="Blob_Column_List" >
     data
@@ -27,6 +29,14 @@
     ,
     <include refid="Blob_Column_List" />
     from demond_info
+  </select>
+  <select id="getAllById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from demond_info
+    where owner = #{username,jdbcType=VARCHAR}
   </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
@@ -43,11 +53,12 @@
   <insert id="insert" parameterType="com.tianshi.domain.Demond" >
     insert into demond_info (id, owner, time, 
       keyword, c_kind, term, 
-      min_money, max_money, target, 
+      min_money, max_money, target,company,phone,
       data)
     values (#{id,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{keyword,jdbcType=VARCHAR}, #{cKind,jdbcType=VARCHAR}, #{term,jdbcType=VARCHAR}, 
-      #{minMoney,jdbcType=VARCHAR}, #{maxMoney,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}, 
+      #{minMoney,jdbcType=VARCHAR}, #{maxMoney,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR},
+      #{company,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
       #{data,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tianshi.domain.Demond" >
@@ -80,6 +91,9 @@
       <if test="target != null" >
         target,
       </if>
+      <if test="company != null" >
+        company,
+      </if>
       <if test="data != null" >
         data,
       </if>
@@ -90,6 +104,9 @@
       </if>
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company,
       </if>
       <if test="time != null" >
         #{time,jdbcType=TIMESTAMP},
@@ -132,6 +149,9 @@
       <if test="cKind != null" >
         c_kind = #{cKind,jdbcType=VARCHAR},
       </if>
+      <if test="company != null" >
+        company,
+      </if>
       <if test="term != null" >
         term = #{term,jdbcType=VARCHAR},
       </if>
@@ -160,6 +180,8 @@
       min_money = #{minMoney,jdbcType=VARCHAR},
       max_money = #{maxMoney,jdbcType=VARCHAR},
       target = #{target,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
       data = #{data,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -172,6 +194,8 @@
       term = #{term,jdbcType=VARCHAR},
       min_money = #{minMoney,jdbcType=VARCHAR},
       max_money = #{maxMoney,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
       target = #{target,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>

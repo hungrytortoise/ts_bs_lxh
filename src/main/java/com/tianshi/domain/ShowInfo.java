@@ -11,6 +11,28 @@ public class ShowInfo {
 
     private Date time;
 
+    @Override
+    public String toString() {
+        return "ShowInfo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", stage='" + stage + '\'' +
+                ", time=" + time +
+                ", keyword='" + keyword + '\'' +
+                ", financingMoney='" + financingMoney + '\'' +
+                ", financingPercent='" + financingPercent + '\'' +
+                ", workMethod='" + workMethod + '\'' +
+                ", payOut='" + payOut + '\'' +
+                ", patent='" + patent + '\'' +
+                ", info='" + info + '\'' +
+                ", tInfo='" + tInfo + '\'' +
+                ", market='" + market + '\'' +
+                ", tAdvance='" + tAdvance + '\'' +
+                ", owner='" + owner + '\'' +
+                ", tag='" + tag + '\'' +
+                '}';
+    }
+
     private String keyword;
 
     private String financingMoney;
