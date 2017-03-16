@@ -148,27 +148,27 @@
 <script src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript">
 //权限检查 管理员和所有者有权限删除
+$("#out").click(function (){
+    //清空登录信息
+    $.ajax({
+        type: "POST",
+        dataType:"json",
+        url: "/user/clean",
+        success:function (data) {
+            alert(data.code)
+            if(data.code==0){
+                alert("panduan")
+
+
+            }
+        }
+
+    })
+
+})
 
 
         $(function () {
-            $("#out").click(function (){
-                //清空登录信息
-                $.ajax({
-                    type: "POST",
-                    dataType:"json",
-                    url: "/user/clean",
-                    success:function (data) {
-                        alert(data.code)
-                        if(data.code==0){
-                            alert("panduan")
-
-
-                        }
-                    }
-
-                })
-
-            })
             $.ajax({
                 type: "POST",
                 dataType:"json",

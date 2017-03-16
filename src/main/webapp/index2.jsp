@@ -18,14 +18,13 @@
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
                 <a class="navbar-brand" href="/">网站标题（自定义）</a>
-                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemond">我的需求</a>
-                <a href="" class="top_lis" target="_blank">技术成果</a>
+                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod" style="display: none ;">需求管理</a>
+                <a id ="tmanage" href="../resultManage.jsp" class="top_lis" target="_blank" style="display:none ;">技术成果管理</a>
+                <a id="usermanage" href="../userManage.jsp" class="top_lis" target="_blank" style="display:none ;">人员管理</a>
             </div>
             <div id="zhiye-navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!--<a href="register.html"><span>注册</span></a>-->
-                    </li>
+
                     <div id="logintag"><li class="active"><a href="login.jsp"><span>登录</span></a></li></div>>
                 </ul>
             </div>
@@ -207,6 +206,17 @@
         </div>
     </div>
 </div>
+<div class="footer">
+    <p class="foot_our">
+        <a href="">加入我们</a>
+        <a href="/contact.jsp">联系我们</a>
+        <a onclick="layer_full_scroll('http://www.scientistin.com/private.html','隐私声明')" href="javascript:void(0);">隐私声明</a>
+        <a onclick="layer_full_scroll('http://www.scientistin.com/contract.html','使用协议')" href="javascript:void(0);">使用协议</a>
+        <a target="_blank" href="/help.jsp">操作说明</a>
+    </p>
+    <p>©xxxx（www.xxx.com)</p>
+    <p>京ICP备16018789号・xxxxxxx</p>
+</div>
 
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
@@ -236,6 +246,30 @@
         })
     })
     $(document).ready(function () {
+
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var idendity = data.idendity ;
+                var owner = "${detail.owner}"
+                var mydemod = document.getElementById("mydemod")
+                var tmanage = document.getElementById("tmanage")
+                var usermanage = document.getElementById("usermanage")
+                //1是高校  2是企业  3pt 0管理
+                if (idendity=='2'||idendity=='0'){
+                    mydemod.style.display="inline";
+                }
+                if (idendity=='1'||idendity=='0'){
+                    tmanage.style.display="inline";
+                }
+                if (idendity=='0'){
+                    usermanage.style.display="inline";
+                }
+
+            }
+        })
         $.ajax({
             type: "POST",
             dataType:"json",
@@ -283,44 +317,74 @@
     })
 
    $(document).ready(function () {
-       $.ajax({
-           type: "POST",
-           dataType:"json",
-           url: "/result/getAll",
-           success:function (data) {
-               var html ="" ;
-               for(var i=0;i<data.length;i++) {
 
-                   var id = data[i].id;
-                   var title = data[i].title;
-                   var info = data[i].info;
-                   var time2 = data[i].time.time;
-                   //将时间戳转换成时间的string
-                   var newdate = new Date();
-                   newdate.setTime(time2);
-                   var outTime = newdate.toLocaleDateString() ;
-                   var term = data[i].term;
-                   var minmoney = data[i].minMoney;
-                   var maxmoney = data[i].maxMoney;
-                   var target = data[i].target;
-                   var content = "<div class='table_cell_sec'>"+
-                       "<a href='/result/showDetail?id="+id+"'>"+
-                       "<h2 class=''><em class='ico_bg_imgs hb'></em>"+title+"</h2>"+
-                       " <p class='he_f2'>"+info.substring(0,20)+"..."+"</p>"+
-                       "<p>时间："+outTime+"</p>"+"</a></div>"
-                   html+=content
+    check() ;
+     function check() {
+         //权限检查
+         $.ajax({
+             type: "POST",
+             dataType:"json",
+             url: "/user/getLoginUsername",
+             success:function (data) {
+                 var idendity = data.idendity ;
+                 var owner = "${detail.owner}"
+                 var mydemod = document.getElementById("mydemod")
+                 var tmanage = document.getElementById("tmanage")
+                 var usermanage = document.getElementById("usermanage")
+                 //1是高校  2是企业  3pt 0管理
+                 if (idendity=='2'||idendity=='0'){
+                     mydemod.style.display="inline";
+                 }
+                 if (idendity=='1'||idendity=='0'){
+                     tmanage.style.display="inline";
+                 }
+                 if (idendity=='0'){
+                     usermanage.style.display="inline";
+                 }
 
 
-               }
+             }
+         })
+
+     }
+         $.ajax({
+             type: "POST",
+             dataType: "json",
+             url: "/result/getAll",
+             success: function (data) {
+                 var html = "";
+                 for (var i = 0; i < data.length; i++) {
+
+                     var id = data[i].id;
+                     var title = data[i].title;
+                     var info = data[i].info;
+                     var time2 = data[i].time.time;
+                     //将时间戳转换成时间的string
+                     var newdate = new Date();
+                     newdate.setTime(time2);
+                     var outTime = newdate.toLocaleDateString();
+                     var term = data[i].term;
+                     var minmoney = data[i].minMoney;
+                     var maxmoney = data[i].maxMoney;
+                     var target = data[i].target;
+                     var content = "<div class='table_cell_sec'>" +
+                         "<a href='/result/showDetail?id=" + id + "'>" +
+                         "<h2 class=''><em class='ico_bg_imgs hb'></em>" + title + "</h2>" +
+                         " <p class='he_f2'>" + info.substring(0, 20) + "..." + "</p>" +
+                         "<p>时间：" + outTime + "</p>" + "</a></div>"
+                     html += content
 
 
-               $("#showres").html(html)
+                 }
 
-           },
-           error:function (data) {
-           },
 
-       })
+                 $("#showres").html(html)
+
+             },
+             error: function (data) {
+             },
+
+         })
 
 
 

@@ -3,6 +3,8 @@ package com.tianshi.dao;
 
 import com.tianshi.domain.User;
 
+import java.util.List;
+
 public interface UserDao {
     int deleteByPrimaryKey(String id);
 
@@ -17,4 +19,6 @@ public interface UserDao {
     int updateByPrimaryKey(User record);
 
     User getByUsername(String username);
+
+    List<User> getAll();
 }

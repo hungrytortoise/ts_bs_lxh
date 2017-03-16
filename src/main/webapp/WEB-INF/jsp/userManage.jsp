@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>填写技术成果详情</title>
+	<title>填写需求详情</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -23,6 +23,40 @@
 	<![endif]-->
 	<style type="text/css">
 		body,html{width:100%;height:100%;}
+	</style>
+	<style type="text/css">
+		body,table{
+			font-size:12px;
+		}
+		table{
+			table-layout:fixed;
+			empty-cells:show;
+			border-collapse: collapse;
+			margin:0 auto;
+		}
+		td{
+			height:30px;
+		}
+		h1,h2,h3{
+			font-size:12px;
+			margin:0;
+			padding:0;
+		}
+		.table{
+			border:1px solid #cad9ea;
+			color:#666;
+		}
+		.table th {
+			background-repeat:repeat-x;
+			height:30px;
+		}
+		.table td,.table th{
+			border:1px solid #cad9ea;
+			padding:0 1em 0;
+		}
+		.table tr.alter{
+			background-color:#f5fafe;
+		}
 	</style>
 </head>
 <body class="gd_tops bg_colors" ontouchstart>
@@ -76,55 +110,6 @@
 <script src="../js/jquery.dotdotdot.min.js"></script>
 <script src="../js/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript">
-	$(function(){
-        $("#buttons_submit").click(function(){
-            var financing_money = $("#financing_money").val();
-            var title = $("#title").val();
-            var keyword = $("#keyword").val();
-            var stage = $("#stage").val();
-            var financing_percent =$("#financing_percent").val() ;
-            var work_method =$("#work_method").val() ;
-            var pay_out =$("#pay_out").val() ;
-            var patent =$("#patent").val();
-            var info = $("#info").val() ;
-            var t_info =$("#t_info").val() ;
-            var t_advance = $("#t_advance").val() ;
-            var market =$("#market").val() ;
-                $.ajax({
-                    //financing_money,title,keyword,company,financing_percent,work_method,pay_out,patent,info,t_info,t_advance,market,phone
-                    type: "POST",
-                    dataType:"json",
-                    url: "/result/add",
-                    data:{"financing_money":financing_money,"title":title,
-						"keyword":keyword,"stage":stage,"financing_percent":financing_percent,"work_method":work_method,
-						"pay_out":pay_out,"patent":patent,"info":info,"t_info":t_info,"t_advance":t_advance,
-						"market":market},
-                    success: function(data){
-                        if(data.code==0){
-                            layer_tips(data.data);
-                            window.location.href="resultManage.jsp";
-                            alert("提交成功")
-                        }else{
-                            loading_layer_hide();
-                            layer_tips(data.data);
-                        }
-                    },
-                    error: function (e) {
-                        loading_layer_hide();
-                        layer_tips('信息同步失败,请重试');
-                    }
-                });
-
-        })
-
-
-    })
-
-
-</script>
-
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -371,7 +356,38 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-
+	
+	<div class="dialog bp-dialog disp" >
+		<h1>提交可转换成果或商业计划书：</h1>
+			<div class="inp_form top_ls" style="margin-top:30px;margin-bottom:0;">
+				<div class="tit_bp_type">
+					<label>请选择提交的内容类型</label>
+					<ul>
+						<li class="active">可转换成果</li>
+						<li>商业计划书</li>
+					</ul>
+				</div>
+				<div class="lo_re_inp_two">
+					<div class="lo_re_inp">
+						<input type="text" class="tit_bp_title" value="" placeholder="请输入标题" />
+					</div>
+					<div class="lo_re_inp">
+						<input type="text" class="tit_bp_keyword" value="" placeholder="请输入关键词，空格分开多个关键词" />
+					</div>
+					<div class="lo_re_inp">
+						<textarea rows="5" class="tit_bp_topic" placeholder="请输入摘要信息"></textarea>
+					</div>
+					<div class="lo_re_inp">
+						<a href="javascript:;" onclick="bp_upload_image()"><img src="/img/uplas.png" style="width:30px;"/>
+						<span class="bp-upload-word-span">上传文件(20MB以内的文件或图片）</span>
+						</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<a class="send">提交</a>
+			</div>
+		<div class="clear"></div>
+	</div>
 	
 	<form action="/api/bp-upload" enctype="multipart/form-data" method="post" class="bp_file_upload">
 		<input type="file" class="hide bp_file" name="file" id="bp-upload-multipart-id" />
@@ -402,49 +418,18 @@ $(document).ready(function() {
 		})
 	
 	</script>
-	
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 ma_center bs_co_ff">
 				<div class="clear" style="height:1px;"></div>
-				
 	            <div class="form-group res_mm group_lef">
-				    <span>标题</span><input type="text" class="form-control" id="title" placeholder="请输入标题" value="">
+					<table id="mytable" width="90%" class="table">
+
+					</table>
+
 				</div>
 
-	            <div class="form-group res_mm group_lef">
-				    <span>关键词</span><input type="text" class="form-control" id="keyword" placeholder="3个左右，逗号','隔开" value="">
-				</div>
-
-				<div class="form-group res_mm group_lef">
-					<span>融资金额</span><input type="text" class="form-control" id="financing_money" placeholder="请输入融资金额" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>融资占比</span><input type="text" class="form-control" id="financing_percent" placeholder="请输入融资占比" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>合作方式</span><input type="text" class="form-control" id="work_method" placeholder="请输入合作方式" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>投入产出</span><input type="text" class="form-control" id="pay_out" placeholder="请输入投入产出" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>专利信息</span><input type="text" class="form-control" id="patent" placeholder="请输入专利信息" value="">
-				</div>
-	            <div class="form-group res_mm group_lef">
-	                <span>项目简介</span><textarea class="form-control" placeholder="友情提示：可填写 目前技术工艺的参数，性能等，目前的技术问题，需求场景等信息。注意保护机密信息哦" id="info" rows="3"></textarea>
-	            </div>
-
-				<div class="form-group res_mm group_lef">
-					<span>技术信息</span><input type="text" class="form-control" id="t_info" placeholder="请输入技术信息" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>技术优势</span><input type="text" class="form-control" id="t_advance" placeholder="请输入技术优势" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>市场信息</span><input type="text" class="form-control" id="market" placeholder="请输入市场信息" value="">
-				</div>
 
 			 		<div id="wrapper">
 						<div class="page-body">
@@ -465,34 +450,13 @@ $(document).ready(function() {
 									    
 									    </ul>
 									   </div>
-									    <div class="statusBar" style="display:none;">
-									        <div style="display: none;" class="progress">
-									            <span class="text">0%</span>
-									            <span style="width: 0%;" class="percentage"></span>
-									        </div><div class="info">共0张（0B），已上传0份</div>
-									        <div class="btns">
-									            <div class="webuploader-container" id="filePicker2"><div class="webuploader-pick">继续添加</div>
-									            </div><div class="uploadBtn state-pedding">开始上传</div>
-									        </div>
-									    </div>
+
 									</div>
 								  </form>
 							    </div>
 							</div>
 						</div> 
 				    </div>
-			 
-	            <div class="form-group res_mm group_lef">
-				    <span>请输入合作阶段</span><input type="text" class="form-control" id="stage" name="stage"  value="">
-				</div>
-
-				<div class="row">
-					<!-- <div class="col-lg-12"> -->
-						<div class="weui_btn_area" id="buttons_submit2">
-				    		<input type="submit" class="weui_btn weui_btn_primary" value="提交" id="buttons_submit" >
-				    	</div>
-					<!-- </div> -->
-				</div>
 			</div>
 		</div>
 	</div>		    
@@ -502,7 +466,7 @@ $(document).ready(function() {
     		<div class="footer">
 			<p class="foot_our">
 				<a href="">加入我们</a>
-				<a href="/">联系我们</a>
+				<a href="/contact.jsp">联系我们</a>
 				<a onclick="layer_full_scroll('http://www.scientistin.com/private.html','隐私声明')" href="javascript:void(0);">隐私声明</a>
 				<a onclick="layer_full_scroll('http://www.scientistin.com/contract.html','使用协议')" href="javascript:void(0);">使用协议</a>		
 				<a target="_blank" href="/help.jsp">操作说明</a>				
@@ -530,11 +494,46 @@ $(document).ready(function() {
     <script>
 
     </script>
-    <script src="/js/webupload/webuploader.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/webuploader.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script src="/js/webupload/demo.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/demo.js" type="text/javascript" charset="utf-8"></script>
 
-	
+
+<script type="text/javascript">
+
+	$(function () {
+            $.ajax({
+                //获取全部的用户的信息
+				type :"POST",
+				dataType :"json",
+				url:"/user/getAll",
+				success:function (data) {
+                    var head = "<tr><th>编号</th><th>姓名</th><th>性别</th><th>电话</th> <th>昵称</th><th>身份</th>"+
+                        "<th>用户名</th><th>密码</th><th>操作</th><th>操作</th></tr>";
+                    for(var i=0;i<data.length;i++) {
+                        var user = data[i] ;
+                        var content = "<tr><td>"+user.id+"</td><td>"+user.name+"</td><td>"+
+                            user.gender+"</td><td>"+user.phone+"</td><td>"+user.nickname+"</td><td>"+
+                            user.identity+"</td><td>"+user.username+"</td><td>"+user.password+"</td><td>"+
+                            "<a href='/user/delete?id="+user.id+"'>删除</a></td><td><a>修改</a></td></tr>" ;
+
+                        head += content;
+
+                    }
+
+					document.getElementById("mytable").innerHTML=head ;
+                }
+
+
+			})
+
+
+
+
+
+    })
+
+	</script>
 
 
 </body>

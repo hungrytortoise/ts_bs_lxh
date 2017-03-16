@@ -6,6 +6,7 @@ import com.tianshi.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/10 0010.
@@ -55,6 +56,16 @@ public class UserServiceImpl implements UserService {
         }
 
         return status;
+    }
+
+    public List<User> getAll() {
+        return userDao.getAll();
+    }
+
+
+
+    public void delete(String id) {
+        userDao.deleteByPrimaryKey(id);
     }
 
 }

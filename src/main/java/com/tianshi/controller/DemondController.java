@@ -44,8 +44,14 @@ public class DemondController extends baseController {
     @ResponseBody
     public  String getDemondsById(){
         List<Demond> list = null ;
-        list = demondService.getallByid(this.login_username) ;
-        System.out.println("登录的用户名是;"+this.login_username);
+        Integer identity = this.user_idendity ;
+        if(identity!=0){
+            list = demondService.getallByid(this.login_username) ;
+        }
+        if(identity==0){
+            list= demondService.getall() ;
+        }
+
         //将list转换成一个json 对象
         JSONArray jsonArray= JSONArray.fromObject(list) ;
 //        JSONObject jsonObject = new JSONObject() ;
@@ -57,8 +63,6 @@ public class DemondController extends baseController {
     @RequestMapping("/add")
     @ResponseBody
     public String add(String detail,String title,String keyword,String company,String phone){
-        //创建对象
-        System.out.println("fangwendaole");
         Demond demond = new Demond() ;
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());

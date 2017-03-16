@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/newmycss.css">
     <link rel="stylesheet" href="./css/layer.css" id="layui_layer_skinlayercss">
+
 </head>
 <body>
 <!--公用头部-->
@@ -17,25 +18,24 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
-                <a class="navbar-brand" href="/">网站标题（自定义）</a>
-                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod">需求管理</a>
-                <a href="../resultManage.jsp" class="top_lis" target="_blank">技术成果管理</a>
-                <a href="../" class="top_lis" target="_blank">人员管理</a>
+                <a class="navbar-brand" href="index.jsp">网站标题（自定义）</a>
+                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod" style="display: none ;">需求管理</a>
+                <a id ="tmanage" href="../resultManage.jsp" class="top_lis" target="_blank" style="display:none ;">技术成果管理</a>
+                <a id="usermanage" href="../userManage.jsp" class="top_lis" target="_blank" style="display:none ;">人员管理</a>
             </div>
 
             <div id="zhiye-navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-
                     <li style='border-right:none;margin-top: 10px'>
                         <div class="btn-group">
                             <a href="javascript:;" class="top_lis dropdown-toggle" data-toggle="dropdown" style="font-size: 16px;border-right: none;margin-left: 0px;margin-top:-5px;"><span id="login_user"></span><i class="glyphicon glyphicon-list" style="margin-top:-1px;vertical-align: middle;"></i></a>
                             <ul class="dropdown-menu header_menu" role="menu">
-                                <li><a href="/user/home.do">学术主页</a></li>
+                                <li><a href="/">自定义</a></li>
                                 <li>
-                                    <a href="/pc/sin/issues.do">
-                                        <span>我的需求</span></a></li>
+                                    <a href="/">
+                                        <span>自定义</span></a></li>
                                 <li><a href="javascript:;" class="change_he" onclick="return changeSin('sin');"><span><i class="glyphicon glyphicon-circle-arrow-right"></i>客户场景</span></a></li>
-                                <li><a href="/index2.jsp"><span>退出</span></a></li>
+                                <li><a href="/index2.jsp"><span id="out">退出</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -49,6 +49,7 @@
         </div>
     </nav>
 </header>
+
 
 <div class="zhiye-slider">
     <div class="owl-carousel owl-carousel-fullwidth">
@@ -218,6 +219,17 @@
         </div>
     </div>
 </div>
+<div class="footer">
+    <p class="foot_our">
+        <a href="">加入我们</a>
+        <a href="/contact.jsp">联系我们</a>
+        <a onclick="layer_full_scroll('http://www.scientistin.com/private.html','隐私声明')" href="javascript:void(0);">隐私声明</a>
+        <a onclick="layer_full_scroll('http://www.scientistin.com/contract.html','使用协议')" href="javascript:void(0);">使用协议</a>
+        <a target="_blank" href="/help.jsp">操作说明</a>
+    </p>
+    <p>©xxxx（www.xxx.com)</p>
+    <p>京ICP备16018789号・xxxxxxx</p>
+</div>
 
 <!-- 弹出窗口layer -->
 <button type="button" class="btn btn-primary hidden" id="tips_btn" data-toggle="modal"
@@ -237,14 +249,14 @@
     </div>
 </div>
 
-<script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="./js/jquery.easing.1.3.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
 <!-- Owl carousel -->
-<script src="./js/owl.carousel.min.js"></script>
+<script src="../js/owl.carousel.min.js"></script>
 
 <!-- Main JS -->
-<script src="./js/main.js"></script>
+<script src="../js/main.js"></script>
 <script type="text/javascript">
 
     $("#mydemod").click(function () {
@@ -255,9 +267,6 @@
             success:function (data) {
 
                  var idendity=data.idendity ;
-                 if(idendity!==2){
-                     alert("仅限企业用户，你没有权限")
-                 }
 
 
             },
@@ -332,6 +341,53 @@
     })
 
     $(document).ready(function () {
+
+        $("#out").click(function (){
+            //清空登录信息
+            $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/clean",
+            success:function (data) {
+                alert(data.code)
+                if(data.code==0){
+                    alert("panduan")
+
+
+                }
+            }
+
+        })
+
+        })
+
+
+        //权限检查
+                $.ajax({
+                    type: "POST",
+                    dataType:"json",
+                    url: "/user/getLoginUsername",
+                    success:function (data) {
+                        var idendity = data.idendity ;
+                        var owner = "${detail.owner}"
+                        var mydemod = document.getElementById("mydemod")
+                        var tmanage = document.getElementById("tmanage")
+                        var usermanage = document.getElementById("usermanage")
+                        //1是高校  2是企业  3pt 0管理
+                        if (idendity=='2'||idendity=='0'){
+                            mydemod.style.display="inline";
+                        }
+                        if (idendity=='1'||idendity=='0'){
+                            tmanage.style.display="inline";
+                        }
+                        if (idendity=='0'){
+                            usermanage.style.display="inline";
+                        }
+
+                    }
+                })
+
+
         $.ajax({
             type: "POST",
             dataType:"json",

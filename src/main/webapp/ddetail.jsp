@@ -111,6 +111,24 @@ $(document).ready(function(){
         }
 
     })
+    $("#out").click(function (){
+        //清空登录信息
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/clean",
+            success:function (data) {
+                alert(data.code)
+                if(data.code==0){
+                    alert("panduan")
+
+
+                }
+            }
+
+        })
+
+    })
 	$("#btnInterest").click(function () {
 			//获取id
 		$.ajax({

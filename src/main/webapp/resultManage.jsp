@@ -5,20 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>技术成果</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/demo.css">
-    <!-- Modernizr JS -->
-    <script charset="utf-8" src="../js/v.js"></script>
-    <script src="../js/modernizr-2.6.2.min.js"></script>
-    <!--[if lt IE 9]>
-    <script src="../js/respond.min.js"></script>
-    <![endif]-->
-    <!-- 网易七鱼的客服代码 -->
-    <link rel="stylesheet" type="text/css" href="../css/qiyu-kf.css">
-    <link rel="stylesheet" href="../css/layer.css" id="layui_layer_skinlayercss">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/newmycss.css">
+    <link rel="stylesheet" href="./css/layer.css" id="layui_layer_skinlayercss">
 
 </head>
 <body class="">
@@ -28,21 +18,38 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
-                <a class="navbar-brand" href="/">网站标题（自定义）</a>
-                <a href="" class="top_lis" target="_blank">项目需求</a>
-                <a href="" class="top_lis" target="_blank">技术成果</a>
+                <a class="navbar-brand" href="index.jsp">网站标题（自定义）</a>
+                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod" style="display: none ;">需求管理</a>
+                <a id ="tmanage" href="../resultManage.jsp" class="top_lis" target="_blank" style="display:none ;">技术成果管理</a>
+                <a id="usermanage" href="../userManage.jsp" class="top_lis" target="_blank" style="display:none ;">人员管理</a>
             </div>
+
             <div id="zhiye-navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!--<a href="register.html"><span>注册</span></a>-->
+                    <li style='border-right:none;margin-top: 10px'>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="top_lis dropdown-toggle" data-toggle="dropdown" style="font-size: 16px;border-right: none;margin-left: 0px;margin-top:-5px;"><span id="login_user"></span><i class="glyphicon glyphicon-list" style="margin-top:-1px;vertical-align: middle;"></i></a>
+                            <ul class="dropdown-menu header_menu" role="menu">
+                                <li><a href="/">自定义</a></li>
+                                <li>
+                                    <a href="/">
+                                        <span>自定义</span></a></li>
+                                <li><a href="javascript:;" class="change_he" onclick="return changeSin('sin');"><span><i class="glyphicon glyphicon-circle-arrow-right"></i>客户场景</span></a></li>
+                                <li><a href="/index2.jsp"><span id="out">退出</span></a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="active"><a href="../login.html"><span>登录</span></a></li>
+
                 </ul>
+                <span class="fw_phone">服务热线：400-400-400</span>
             </div>
+        </div>
+
+
         </div>
     </nav>
 </header>
+
 <script type="text/javascript">
     function changeSin(sen) {
         $.ajax({
@@ -139,49 +146,6 @@
                         <div class="item">
                             <div class="container-fluid slide_cons_rows slide_cons_rows2">
                                 <div class="row" id="showinfo">
-
-                                    <div class="col-md-2">
-                                        <a href="http://www.scientistin.com/pc/issueInfoTemp.do?iid=892310e90692fb50d32a246f9fe4f162"
-                                           target="_blank">
-
-                                            <p class="tit he_f2 ellipsis" style="word-wrap: break-word;">苏州某某公司</p>
-                                            <span class="he_f2 ellipsis" style="word-wrap: break-word;">需要小规模的、可应用于工业企业内部减量使用的小型水处理设备技术</span>
-                                            <p class="he_f1 ellipsis is-truncated" style="word-wrap: break-word;">
-                                                需要小规模的，可以应用于工业企业内部减量使用的小型水处理设备技术，每天10吨左右工业废水... </p>
-                                            <p>2016-11-24 20:43</p>
-                                            <p class="he_f3">最新进展：客服发表评论</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <a href="http://www.scientistin.com/pc/issueInfoTemp.do?iid=cec3954d231ba2433575a57d99f21e28"
-                                           target="_blank">
-
-                                            <p class="tit he_f2 ellipsis" style="word-wrap: break-word;">
-                                                北京某某环境科技股份有限公司</p>
-                                            <span class="he_f2 ellipsis" style="word-wrap: break-word;">电站锅炉燃烧喷口风速、风量、动量等优化配比</span>
-                                            <p class="he_f1 ellipsis is-truncated" style="word-wrap: break-word;">
-                                                北京某某环境科技股份有限公司（上市公司），专业电站锅炉燃烧公司。目前正在开发CEE靶向燃... </p>
-                                            <p>2016-12-13 17:13</p>
-                                            <p class="he_f3">最新进展：专家响应需求</p>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <a href="http://www.scientistin.com/pc/issueInfoTemp.do?iid=e5801775bbb7b9e554b0a7aa65c51ceb"
-                                           target="_blank">
-
-                                            <p class="tit he_f2 ellipsis" style="word-wrap: break-word;">
-                                                广东某某产业孵化有限公司</p>
-                                            <span class="he_f2 ellipsis"
-                                                  style="word-wrap: break-word;">寻求餐厨垃圾的无害化处理技术</span>
-                                            <p class="he_f1 ellipsis is-truncated" style="word-wrap: break-word;">
-                                                餐厨垃圾市场巨大，目前是市面有养殖黑水虻吃掉厨馀的方法，希望找到比较实用、无害的餐厨垃... </p>
-                                            <p>2016-12-16 10:44</p>
-                                            <p class="he_f3">最新进展：专家响应需求</p>
-                                        </a>
-                                    </div>
-
                                     <div class="col-md-2">
                                         <a href="http://www.scientistin.com/pc/issueInfoTemp.do?iid=212be1ffb9916eb37b4e97101924d98c"
                                            target="_blank">
@@ -428,9 +392,62 @@
         $.ajax({
             type: "POST",
             dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var html ="" ;
+                html=data.data+"&nbsp&nbsp";
+                $("#login_user").html(html);
+
+            },
+
+        })
+        $("#out").click(function (){
+            //清空登录信息
+            $.ajax({
+                type: "POST",
+                dataType:"json",
+                url: "/user/clean",
+                success:function (data) {
+                    alert(data.code)
+                    if(data.code==0){
+                        alert("panduan")
+
+
+                    }
+                }
+
+            })
+
+        })
+        //权限检查
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var idendity = data.idendity ;
+                var owner = "${detail.owner}"
+                var mydemod = document.getElementById("mydemod")
+                var tmanage = document.getElementById("tmanage")
+                var usermanage = document.getElementById("usermanage")
+                //1是高校  2是企业  3pt 0管理
+                if (idendity=='2'||idendity=='0'){
+                    mydemod.style.display="inline";
+                }
+                if (idendity=='1'||idendity=='0'){
+                    tmanage.style.display="inline";
+                }
+                if (idendity=='0'){
+                    usermanage.style.display="inline";
+                }
+
+            }
+        })
+        $.ajax({
+            type: "POST",
+            dataType:"json",
             url: "/result/getAllByUsername",
             success:function (data) {
-
                 var html ="" ;
                 for(var i=0;i<data.length;i++) {
 

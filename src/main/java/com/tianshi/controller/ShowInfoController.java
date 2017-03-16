@@ -12,9 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/3/10 0010.
@@ -43,7 +42,6 @@ public class ShowInfoController extends baseController {
         //JSONObject jsonObject = JSONObject.fromObject(showInfo);
         Map<String,ShowInfo> map = new HashMap<String, ShowInfo>() ;
         map.put("detail",showInfo) ;
-        System.out.println(showInfo.toString());
         return  new ModelAndView("detail",map) ;
     }
 
@@ -74,9 +72,43 @@ public class ShowInfoController extends baseController {
 
         }
         JSONArray jsonArray = JSONArray.fromObject(list) ;
-        System.out.println("++++++++++++++"+jsonArray.toString());
 
         return jsonArray.toString() ;
+
+    }
+    @RequestMapping("/add")
+    @ResponseBody
+    public  String add(String financing_money,String title,String keyword,
+                       String financing_percent,String work_method,String pay_out,String patent,
+                       String  info,String t_info,String t_advance,String market,String stage)
+    {
+        ShowInfo showInfo = new ShowInfo() ;
+        double d =Math.random();
+        String id =(int)d*1000+"";
+
+
+        Date date = new Date() ;
+        Timestamp timestamp = new Timestamp(date.getTime());
+        showInfo.setId(id);
+        showInfo.setTime(timestamp);
+        showInfo.setOwner(this.login_username);
+        showInfo.setFinancingMoney(financing_money);
+        showInfo.setFinancingPercent(financing_percent);
+        showInfo.setTitle(title);
+        showInfo.setKeyword(keyword);
+        showInfo.setWorkMethod(work_method);
+        showInfo.setPayOut(pay_out);
+        showInfo.setPatent(patent);
+        showInfo.setInfo(info);
+        showInfo.settInfo(t_info);
+        showInfo.settAdvance(t_advance);
+        showInfo.setMarket(market);
+        showInfo.setStage(stage);
+        showInfoService.add(showInfo) ;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0) ;
+
+        return jsonObject.toString() ;
 
     }
 }

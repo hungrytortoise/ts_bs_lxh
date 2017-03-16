@@ -5,20 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>项目需求</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/demo.css">
-    <!-- Modernizr JS -->
-    <script charset="utf-8" src="../js/v.js"></script>
-    <script src="../js/modernizr-2.6.2.min.js"></script>
-    <!--[if lt IE 9]>
-    <script src="../js/respond.min.js"></script>
-    <![endif]-->
-    <!-- 网易七鱼的客服代码 -->
-    <link rel="stylesheet" type="text/css" href="../css/qiyu-kf.css">
-    <link rel="stylesheet" href="../css/layer.css" id="layui_layer_skinlayercss">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/newmycss.css">
+    <link rel="stylesheet" href="./css/layer.css" id="layui_layer_skinlayercss">
 
 </head>
 <body class="">
@@ -28,18 +18,34 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
-                <a class="navbar-brand" href="/">网站标题（自定义）</a>
-                <a href="" class="top_lis" target="_blank">项目需求</a>
-                <a href="" class="top_lis" target="_blank">技术成果</a>
+                <a class="navbar-brand" href="index.jsp">网站标题（自定义）</a>
+                <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod" style="display: none ;">需求管理</a>
+                <a id ="tmanage" href="../resultManage.jsp" class="top_lis" target="_blank" style="display:none ;">技术成果管理</a>
+                <a id="usermanage" href="../userManage.jsp" class="top_lis" target="_blank" style="display:none ;">人员管理</a>
             </div>
+
             <div id="zhiye-navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!--<a href="register.html"><span>注册</span></a>-->
+                    <li style='border-right:none;margin-top: 10px'>
+                        <div class="btn-group">
+                            <a href="javascript:;" class="top_lis dropdown-toggle" data-toggle="dropdown" style="font-size: 16px;border-right: none;margin-left: 0px;margin-top:-5px;"><span id="login_user"></span><i class="glyphicon glyphicon-list" style="margin-top:-1px;vertical-align: middle;"></i></a>
+                            <ul class="dropdown-menu header_menu" role="menu">
+                                <li><a href="/">自定义</a></li>
+                                <li>
+                                    <a href="/">
+                                        <span>自定义</span></a></li>
+                                <li><a href="javascript:;" class="change_he" onclick="return changeSin('sin');"><span><i class="glyphicon glyphicon-circle-arrow-right"></i>客户场景</span></a></li>
+                                <li><a href="/index2.jsp"><span id="out">退出</span></a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="active"><a href="../login.html"><span>登录</span></a></li>
+
                 </ul>
+                <span class="fw_phone">服务热线：400-400-400</span>
             </div>
+        </div>
+
+
         </div>
     </nav>
 </header>
@@ -67,6 +73,8 @@
     }
 
 </script>
+
+
 <div class="zhiye-slider item2s"
      style="background-image:url(img/bgc1.jpg);background-size:cover ;">
     <div class="item" style="height: 100%;">
@@ -425,6 +433,62 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var html ="" ;
+                html=data.data+"&nbsp&nbsp";
+                $("#login_user").html(html);
+
+            },
+
+        })
+        $("#out").click(function (){
+            //清空登录信息
+            $.ajax({
+                type: "POST",
+                dataType:"json",
+                url: "/user/clean",
+                success:function (data) {
+                    alert(data.code)
+                    if(data.code==0){
+                        alert("panduan")
+
+
+                    }
+                }
+
+            })
+
+        })
+        //权限检查
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var idendity = data.idendity ;
+                var owner = "${detail.owner}"
+                var mydemod = document.getElementById("mydemod")
+                var tmanage = document.getElementById("tmanage")
+                var usermanage = document.getElementById("usermanage")
+                //1是高校  2是企业  3pt 0管理
+                if (idendity=='2'||idendity=='0'){
+                    mydemod.style.display="inline";
+                }
+                if (idendity=='1'||idendity=='0'){
+                    tmanage.style.display="inline";
+                }
+                if (idendity=='0'){
+                    usermanage.style.display="inline";
+                }
+
+            }
+        })
+
+
         $.ajax({
             type: "POST",
             dataType:"json",

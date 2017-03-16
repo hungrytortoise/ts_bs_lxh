@@ -80,7 +80,6 @@
 <script type="text/javascript">
 	$(function(){
         $("#buttons_submit").click(function(){
-            alert('diajile')
             var detail = $("#detail").val();
             var title = $("#title").val();
             var keyword = $("#keyword").val();

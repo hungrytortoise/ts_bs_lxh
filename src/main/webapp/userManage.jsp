@@ -5,29 +5,57 @@
 <!--[if gt IE 8]><!--> 
 <html class="no-js"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>填写技术成果详情</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="shortcut icon" href="../img/favicon.ico">
-	<link rel="stylesheet" href="../css/weui.min.css" >
-	<link rel="stylesheet" href="../css/style.css" >
-	<link rel="stylesheet" type="text/css" href="../css/newmycss.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/demo.css"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>title</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/newmycss.css">
+	<link rel="stylesheet" href="./css/layer.css" id="layui_layer_skinlayercss">
+
 	<!--[if lt IE 9]>
 	<script src="null"></script>
 	<![endif]-->
 	<style type="text/css">
 		body,html{width:100%;height:100%;}
 	</style>
+	<style type="text/css">
+		body,table{
+			font-size:12px;
+		}
+		table{
+			table-layout:fixed;
+			empty-cells:show;
+			border-collapse: collapse;
+			margin:0 auto;
+		}
+		td{
+			height:30px;
+		}
+		h1,h2,h3{
+			font-size:12px;
+			margin:0;
+			padding:0;
+		}
+		.table{
+			border:1px solid #cad9ea;
+			color:#666;
+		}
+		.table th {
+			background-repeat:repeat-x;
+			height:30px;
+		}
+		.table td,.table th{
+			border:1px solid #cad9ea;
+			padding:0 1em 0;
+		}
+		.table tr.alter{
+			background-color:#f5fafe;
+		}
+	</style>
 </head>
-<body class="gd_tops bg_colors" ontouchstart>
-	
 
+<body class="gd_tops bg_colors" ontouchstart >
 
 <!-- 弹出窗口layer -->
 <button type="button" class="btn btn-primary hidden" id="tips_btn" data-toggle="modal" data-target=".bs-example-modal-sm">提示信息</button>
@@ -70,62 +98,20 @@
 <script src="../js/jquery.easing.1.3.js"></script>
 <!-- Owl carousel -->
 <script src="../js/owl.carousel.min.js"></script>
-<!-- Waypoints 滚动监听 -->
-<script src="../js/jquery.waypoints.min.js"></script>
-<script src="../js/jquery.magnific-popup.min.js"></script>
 <script src="../js/jquery.dotdotdot.min.js"></script>
+
 <script src="../js/layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript">
-	$(function(){
-        $("#buttons_submit").click(function(){
-            var financing_money = $("#financing_money").val();
-            var title = $("#title").val();
-            var keyword = $("#keyword").val();
-            var stage = $("#stage").val();
-            var financing_percent =$("#financing_percent").val() ;
-            var work_method =$("#work_method").val() ;
-            var pay_out =$("#pay_out").val() ;
-            var patent =$("#patent").val();
-            var info = $("#info").val() ;
-            var t_info =$("#t_info").val() ;
-            var t_advance = $("#t_advance").val() ;
-            var market =$("#market").val() ;
-                $.ajax({
-                    //financing_money,title,keyword,company,financing_percent,work_method,pay_out,patent,info,t_info,t_advance,market,phone
-                    type: "POST",
-                    dataType:"json",
-                    url: "/result/add",
-                    data:{"financing_money":financing_money,"title":title,
-						"keyword":keyword,"stage":stage,"financing_percent":financing_percent,"work_method":work_method,
-						"pay_out":pay_out,"patent":patent,"info":info,"t_info":t_info,"t_advance":t_advance,
-						"market":market},
-                    success: function(data){
-                        if(data.code==0){
-                            layer_tips(data.data);
-                            window.location.href="resultManage.jsp";
-                            alert("提交成功")
-                        }else{
-                            loading_layer_hide();
-                            layer_tips(data.data);
-                        }
-                    },
-                    error: function (e) {
-                        loading_layer_hide();
-                        layer_tips('信息同步失败,请重试');
-                    }
-                });
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<!-- Owl carousel -->
+<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/jquery.dotdotdot.min.js"></script>
 
-        })
-
-
-    })
-
-
-</script>
-
-
+<script src="../js/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -262,27 +248,7 @@ $(document).ready(function() {
 <script src="../js/perfect-scrollbar-0.4.1.with-mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>  
 
-		<div class="dialog invite-others-dialog disp" >
-			<h1>邀请同事加入科学家在线ScientistIn：</h1>
-			<form action="" method="post">
-				<div class="inp_form top_ls" style="margin-top:30px;margin-bottom:0;">
-					<div class="lo_re_inp_two">
-						<div class="lo_re_inp">
-							<!-- <label><span class="til">姓名 : </span></label> -->
-							<input type="text" class="invite-others-name" value="" placeholder="请输入同事姓名" />
-						</div>
-						<div class="lo_re_inp">
-							<!-- <label><span class="til">邮箱 : </span></label> -->
-							<input type="text" class="invite-others-email" value="" placeholder="请输入同事邮箱" />
-						</div>
-						<div class="clear"></div>
-					</div>
-					<a class="send">发送</a>
-				</div>
-			</form>
-			
-			<div class="clear"></div>
-		</div>
+
 		<div class="dialog invite-scientist-dialog disp invite_yq_adro">
 			<h1>推荐学者加入科学家在线ScientistIn：</h1>
 			<form action="" method="post">
@@ -301,77 +267,106 @@ $(document).ready(function() {
 			</form>
 			<div class="clear"></div>
 		</div>
-		<div class='top_paosi'>
-		<div class="head_cons">
-			<a href="/" class="home_logos_new">
-				<img src="/img/logonew.png">
-			</a>
-			<ul class="left_tab_ul">
-				
-				<li><a href="/" class="">自定义<span id="headerFlowNum" style="left:41px;"></span></a></li>
-				<li><a href="/" class=" xq_acti">自定义</a></li>
-				<li><a href="/" class="">自定义</a></li>
-				
+<div class="head_cons">
+	<a href="/" class="home_logos_new">
+		<img src="/img/logonew.png">
+	</a>
+	<ul class="left_tab_ul">
 
-			 <!--
-				<li><a  href="/user/dataAnalysis.do" class="">大数据</a></li>
-			大数据 -->
-				
-			</ul>
-			<div class="rig_dip">
-				<ul class="right_tab_ul">
-					<li>
-						<input type="text" name="keyword" id="search-entrance-keyword" class="inp_sp" value="" placeholder="搜索" />
-						<i class="se_icon"></i>
-						<input type="button" value="" class="inp_sub" id="search-entrance-button"/>
-					</li>
+		<li><a href="/" class="">自定义<span id="headerFlowNum" style="left:41px;"></span></a></li>
+		<li><a href="/" class=" xq_acti">自定义</a></li>
+		<li><a href="/" class="">自定义</a></li>
 
-					<li>
-						<a class="top_icons top_icons_yj" href="/user/mailbox.do">
-							<span id="headerMsgNum"></span>
-						</a>
-					</li>
-					<li>
-						<a  href="javascript:;" id="iframe_notify" class="top_icons top_icons_tz shake-rotate iframe_notify_btn active  shake-constant "></a>
-					</li>
-					<li><a href="javascript:void(0);" class="top_icons top_icons_change" onclick="return changeSin('sin');" title="客户场景"></a></li>
-					<li id="sec_ewm">
-						<a class="list" href="javascript:void(0);">
-							<img src="/img/ewm.jpg" style="width:27px;">
-						</a>
-						<div class="diaga_ewm" style="display:none;">
-							<div class="ewm_lays">
-								<img src="/img/ewm.jpg">
-								<span>
+
+		<!--
+           <li><a  href="/user/dataAnalysis.do" class="">大数据</a></li>
+       大数据 -->
+
+	</ul>
+	<div class="rig_dip">
+		<ul class="right_tab_ul">
+			<li>
+				<input type="text" name="keyword" id="search-entrance-keyword" class="inp_sp" value="" placeholder="搜索" />
+				<i class="se_icon"></i>
+				<input type="button" value="" class="inp_sub" id="search-entrance-button"/>
+			</li>
+
+			<li>
+				<a class="top_icons top_icons_yj" href="/user/mailbox.do">
+					<span id="headerMsgNum"></span>
+				</a>
+			</li>
+			<li>
+				<a  href="javascript:;" id="iframe_notify" class="top_icons top_icons_tz shake-rotate iframe_notify_btn active  shake-constant "></a>
+			</li>
+			<li><a href="javascript:void(0);" class="top_icons top_icons_change" onclick="return changeSin('sin');" title="客户场景"></a></li>
+			<li id="sec_ewm">
+				<a class="list" href="javascript:void(0);">
+					<img src="/img/ewm.jpg" style="width:27px;">
+				</a>
+				<div class="diaga_ewm" style="display:none;">
+					<div class="ewm_lays">
+						<img src="/img/ewm.jpg">
+						<span>
 									使用微信扫描该二维码，或在微信中搜索公众号“科学家在线”，关注公众号。随时随地接收你的学术动态。
 								</span>
-							</div>
-						</div>
-					</li>
-					<li class="use">
-						<img id="headerUserPortrait" src="http://rep.scientistin.com/default/portrait.png"/>
-						<i></i>
-						<div class="logout disp menus_top_downs">
-						<ul>
-							<li><a href="/">首页</a></li>
+					</div>
+				</div>
+			</li>
+			<li class="use">
+				<img id="headerUserPortrait" src="http://rep.scientistin.com/default/portrait.png"/>
+				<i></i>
+				<div class="logout disp menus_top_downs">
+					<ul>
+						<li><a href="/">首页</a></li>
 
-							<li class="invite-others">
-								邀请同事
+						<li class="invite-others">
+							邀请同事
 
-							</li>
-							<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/info.do">账号设置</a></li>
-							<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/task.do">上传进度</a></li>
+						</li>
+						<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/info.do">账号设置</a></li>
+						<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/task.do">上传进度</a></li>
 
-							<li><a href="javascript:void(0);" class="change-sin" onclick="return changeSin('sin');">客户场景</a></li>
-							<li><a href="/logout.do">退出</a></li>
-						</ul>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
+						<li><a href="javascript:void(0);" class="change-sin" onclick="return changeSin('sin');">客户场景</a></li>
+						<li><a href="/logout.do">退出</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
 	</div>
-
+</div>
+	
+	<div class="dialog bp-dialog disp" >
+		<h1>提交可转换成果或商业计划书：</h1>
+			<div class="inp_form top_ls" style="margin-top:30px;margin-bottom:0;">
+				<div class="tit_bp_type">
+					<label>请选择提交的内容类型</label>
+					<ul>
+						<li class="active">可转换成果</li>
+						<li>商业计划书</li>
+					</ul>
+				</div>
+				<div class="lo_re_inp_two">
+					<div class="lo_re_inp">
+						<input type="text" class="tit_bp_title" value="" placeholder="请输入标题" />
+					</div>
+					<div class="lo_re_inp">
+						<input type="text" class="tit_bp_keyword" value="" placeholder="请输入关键词，空格分开多个关键词" />
+					</div>
+					<div class="lo_re_inp">
+						<textarea rows="5" class="tit_bp_topic" placeholder="请输入摘要信息"></textarea>
+					</div>
+					<div class="lo_re_inp">
+						<a href="javascript:;" onclick="bp_upload_image()"><img src="/img/uplas.png" style="width:30px;"/>
+						<span class="bp-upload-word-span">上传文件(20MB以内的文件或图片）</span>
+						</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<a class="send">提交</a>
+			</div>
+		<div class="clear"></div>
+	</div>
 	
 	<form action="/api/bp-upload" enctype="multipart/form-data" method="post" class="bp_file_upload">
 		<input type="file" class="hide bp_file" name="file" id="bp-upload-multipart-id" />
@@ -402,49 +397,18 @@ $(document).ready(function() {
 		})
 	
 	</script>
-	
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 ma_center bs_co_ff">
 				<div class="clear" style="height:1px;"></div>
-				
 	            <div class="form-group res_mm group_lef">
-				    <span>标题</span><input type="text" class="form-control" id="title" placeholder="请输入标题" value="">
+					<table id="mytable" width="90%" class="table">
+
+					</table>
+
 				</div>
 
-	            <div class="form-group res_mm group_lef">
-				    <span>关键词</span><input type="text" class="form-control" id="keyword" placeholder="3个左右，逗号','隔开" value="">
-				</div>
-
-				<div class="form-group res_mm group_lef">
-					<span>融资金额</span><input type="text" class="form-control" id="financing_money" placeholder="请输入融资金额" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>融资占比</span><input type="text" class="form-control" id="financing_percent" placeholder="请输入融资占比" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>合作方式</span><input type="text" class="form-control" id="work_method" placeholder="请输入合作方式" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>投入产出</span><input type="text" class="form-control" id="pay_out" placeholder="请输入投入产出" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>专利信息</span><input type="text" class="form-control" id="patent" placeholder="请输入专利信息" value="">
-				</div>
-	            <div class="form-group res_mm group_lef">
-	                <span>项目简介</span><textarea class="form-control" placeholder="友情提示：可填写 目前技术工艺的参数，性能等，目前的技术问题，需求场景等信息。注意保护机密信息哦" id="info" rows="3"></textarea>
-	            </div>
-
-				<div class="form-group res_mm group_lef">
-					<span>技术信息</span><input type="text" class="form-control" id="t_info" placeholder="请输入技术信息" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>技术优势</span><input type="text" class="form-control" id="t_advance" placeholder="请输入技术优势" value="">
-				</div>
-				<div class="form-group res_mm group_lef">
-					<span>市场信息</span><input type="text" class="form-control" id="market" placeholder="请输入市场信息" value="">
-				</div>
 
 			 		<div id="wrapper">
 						<div class="page-body">
@@ -465,44 +429,23 @@ $(document).ready(function() {
 									    
 									    </ul>
 									   </div>
-									    <div class="statusBar" style="display:none;">
-									        <div style="display: none;" class="progress">
-									            <span class="text">0%</span>
-									            <span style="width: 0%;" class="percentage"></span>
-									        </div><div class="info">共0张（0B），已上传0份</div>
-									        <div class="btns">
-									            <div class="webuploader-container" id="filePicker2"><div class="webuploader-pick">继续添加</div>
-									            </div><div class="uploadBtn state-pedding">开始上传</div>
-									        </div>
-									    </div>
+
 									</div>
 								  </form>
 							    </div>
 							</div>
 						</div> 
 				    </div>
-			 
-	            <div class="form-group res_mm group_lef">
-				    <span>请输入合作阶段</span><input type="text" class="form-control" id="stage" name="stage"  value="">
-				</div>
-
-				<div class="row">
-					<!-- <div class="col-lg-12"> -->
-						<div class="weui_btn_area" id="buttons_submit2">
-				    		<input type="submit" class="weui_btn weui_btn_primary" value="提交" id="buttons_submit" >
-				    	</div>
-					<!-- </div> -->
-				</div>
 			</div>
 		</div>
 	</div>		    
     <br/><br/>
     <div style="height:100px;"></div>
-    <div class="weui_toptips weui_warn js_tooltips">格式不对</div>
+    <div class="weui_toptips weui_warn js_tooltips"></div>
     		<div class="footer">
 			<p class="foot_our">
 				<a href="">加入我们</a>
-				<a href="/">联系我们</a>
+				<a href="/contact.jsp">联系我们</a>
 				<a onclick="layer_full_scroll('http://www.scientistin.com/private.html','隐私声明')" href="javascript:void(0);">隐私声明</a>
 				<a onclick="layer_full_scroll('http://www.scientistin.com/contract.html','使用协议')" href="javascript:void(0);">使用协议</a>		
 				<a target="_blank" href="/help.jsp">操作说明</a>				
@@ -530,11 +473,82 @@ $(document).ready(function() {
     <script>
 
     </script>
-    <script src="/js/webupload/webuploader.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/webuploader.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script src="/js/webupload/demo.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/demo.js" type="text/javascript" charset="utf-8"></script>
 
-	
+
+<script type="text/javascript">
+
+	$(function () {
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var html ="" ;
+                html=data.data+"&nbsp&nbsp";
+                $("#login_user").html(html);
+
+            },
+
+        })
+        //权限检查
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getLoginUsername",
+            success:function (data) {
+                var idendity = data.idendity ;
+                var owner = "${detail.owner}"
+                var mydemod = document.getElementById("mydemod")
+                var tmanage = document.getElementById("tmanage")
+                var usermanage = document.getElementById("usermanage")
+                //1是高校  2是企业  3pt 0管理
+                if (idendity=='2'||idendity=='0'){
+                    mydemod.style.display="inline";
+                }
+                if (idendity=='1'||idendity=='0'){
+                    tmanage.style.display="inline";
+                }
+                if (idendity=='0'){
+                    usermanage.style.display="inline";
+                }
+
+            }
+        })
+            $.ajax({
+                //获取全部的用户的信息
+				type :"POST",
+				dataType :"json",
+				url:"/user/getAll",
+				success:function (data) {
+                    var head = "<tr><th>编号</th><th>姓名</th><th>性别</th><th>电话</th> <th>昵称</th><th>身份</th>"+
+                        "<th>用户名</th><th>密码</th><th>操作</th><th>操作</th></tr>";
+                    for(var i=0;i<data.length;i++) {
+                        var user = data[i] ;
+                        var content = "<tr><td>"+user.id+"</td><td>"+user.name+"</td><td>"+
+                            user.gender+"</td><td>"+user.phone+"</td><td>"+user.nickname+"</td><td>"+
+                            user.identity+"</td><td>"+user.username+"</td><td>"+user.password+"</td><td>"+
+                            "<a href='/user/delete?id="+user.id+"'>删除</a></td><td><a>修改</a></td></tr>" ;
+
+                        head += content;
+
+                    }
+
+					document.getElementById("mytable").innerHTML=head ;
+                }
+
+
+			})
+
+
+
+
+
+    })
+
+	</script>
 
 
 </body>

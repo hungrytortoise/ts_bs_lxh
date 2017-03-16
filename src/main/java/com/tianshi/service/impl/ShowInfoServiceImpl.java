@@ -37,4 +37,8 @@ public class ShowInfoServiceImpl implements ShowInfoService {
     public List<ShowInfo> getAllByUsername(String username) {
         return showInfoDao.getAllByUserName(username);
     }
+
+    public void add(ShowInfo showInfo) {
+        showInfoDao.insert(showInfo) ;
+    }
 }

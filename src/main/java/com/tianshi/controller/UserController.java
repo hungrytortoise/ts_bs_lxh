@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.tianshi.base.baseController;
 import com.tianshi.domain.User;
 import com.tianshi.service.UserService;
+import net.sf.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -103,5 +105,33 @@ public class UserController extends baseController {
         jsonObject.put("username",login_username) ;
         jsonObject.put("idendity",user_idendity) ;
       return   jsonObject.toJSONString() ;
-    };
+    }
+
+    @RequestMapping("/getAll")
+    @ResponseBody
+    public  String getAll(){
+        List<User> list = userService.getAll() ;
+        JSONArray jsonArray = JSONArray.fromObject(list) ;
+
+        System.out.println(jsonArray.toString());
+        return  jsonArray.toString() ;
+    }
+    @RequestMapping("/delete")
+    public String delete (HttpServletRequest request){
+        String id =request.getParameter("id");
+        System.out.println("huoqudaodeid"+id);
+        userService.delete(id) ;
+        return "/userManage" ;
+    }
+    @RequestMapping("/clean")
+    public String clean(){
+        this.user_idendity=3 ;
+        this.login_username="" ;
+        this.login_userid="";
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        return  jsonObject.toString();
+
+    }
+
 }
