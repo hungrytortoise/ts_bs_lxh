@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>注册</title>
+    <title>修改信息</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -38,23 +38,15 @@
                     <div class="clear"></div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="phone" placeholder="请输入手机号码或邮箱地址">
-                </div>
-
-                <div class="form-group">
                     <input type="text" class="form-control" id="password" placeholder="请设置登录密码">
                 </div>
                 <p>请填写机构或企业名称和地址信息</p>
                 <div class="form-group">
                     <input type="text" class="form-control" id="company" placeholder="请输入机构或企业名称">
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="phone2" placeholder="请输入紧急联系人电话">
-                </div>
                 <br />
-                <input type="submit" value="注册" class="btn btn-success btn-block btn-lg bg_color" id="buttons_submit"/>
+                <input type="submit" value="修改" class="btn btn-success btn-block btn-lg bg_color" id="buttons_submit"/>
                 <a href="/" class="fot_left">首页</a>
-                <a href="login.jsp" class="fot_rig">已有账号，去登录</a>
             </div>
         </div>
 
@@ -128,6 +120,24 @@
     }
     var rStep = "sin";
     $(function(){
+        $.ajax({
+            type: "POST",
+            dataType:"json",
+            url: "/user/getById",
+            data:{},
+            success:function (data) {
+                var name =data.name;
+                var gender=data.gender ;
+                var passwd = data.password ;
+                var company = data.company ;
+                $("#name").val(name);
+                $("#gender").val(gender) ;
+                $("#password").val(passwd) ;
+                $("#company").val(company) ;
+            }
+
+        })
+
         myReload();
         $("#ser_yzm").click(function(){
             var phone = $("#phone").val();
@@ -168,19 +178,17 @@
         });
 
         $("#buttons_submit").click(function(){
-            var phone = $("#phone").val();
             var password = $("#password").val();
             var name = $("#name").val();
             var gender = $("#gender").val();
             var company = $("#company").val();
-            var phone2 = $("#phone2").val();
-            alert("phone"+phone)
-            if(phone!='' && $.trim(name) != ""  && $.trim(password) != ""){
+            alert("chuledianji")
+            if($.trim(name) != ""  && $.trim(password) != ""){
                 $.ajax({
                     type: "POST",
                     dataType:"json",
-                    url: "/user/register",
-                    data:{"phone":phone,"password":password,"name":name,"gender":gender,"company":company,"phone2":phone2},
+                    url: "/user/update",
+                    data:{"password":password,"name":name,"gender":gender,"company":company},
                     success: function(data){
                         console.log(data);
                         if(data.code==0){
@@ -192,7 +200,7 @@
                         }
                     },
                     error: function (e) {
-                        layer_tips('注册失败,请重试');
+                        layer_tips('修改成功');
                     }
                 });
             }else{

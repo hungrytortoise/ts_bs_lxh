@@ -18,7 +18,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
-                <a class="navbar-brand" href="index.jsp">网站标题（自定义）</a>
+                <a class="navbar-brand" href="index.jsp">科研成果转化平台</a>
                 <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod" style="display: none ;">需求管理</a>
                 <a id ="tmanage" href="../resultManage.jsp" class="top_lis" target="_blank" style="display:none ;">技术成果管理</a>
                 <a id="usermanage" href="../userManage.jsp" class="top_lis" target="_blank" style="display:none ;">人员管理</a>
@@ -30,11 +30,9 @@
                         <div class="btn-group">
                             <a href="javascript:;" class="top_lis dropdown-toggle" data-toggle="dropdown" style="font-size: 16px;border-right: none;margin-left: 0px;margin-top:-5px;"><span id="login_user"></span><i class="glyphicon glyphicon-list" style="margin-top:-1px;vertical-align: middle;"></i></a>
                             <ul class="dropdown-menu header_menu" role="menu">
-                                <li><a href="/">自定义</a></li>
-                                <li>
-                                    <a href="/">
-                                        <span>自定义</span></a></li>
-                                <li><a href="javascript:;" class="change_he" onclick="return changeSin('sin');"><span><i class="glyphicon glyphicon-circle-arrow-right"></i>客户场景</span></a></li>
+                                <li><a href="/update.jsp">修改个人信息</a></li>
+
+                               <%-- <li><a href="javascript:;" class="change_he" onclick="return changeSin('sin');"><span><i class="glyphicon glyphicon-circle-arrow-right"></i>客户场景</span></a></li> --%>
                                 <li><a href="/index2.jsp"><span id="out">退出</span></a></li>
                             </ul>
                         </div>
@@ -319,7 +317,7 @@
                     var target = data[i].target;
                     var content = "<div class='table_cell_sec'>" +
                         "<a href='/demond/showdetail?id=" + id + "'>" +
-                        "<h2 class=''><em class='ico_bg_imgs hb'></em>"+ckind+"</h2>"+
+                        "<h2 class=''><em class='ico_bg_imgs hb'></em>"+keyword+"</h2>"+
                         "<span class='he_f2 he_f3' style='color:#999 !important;'>" + company + "</span>" +
                         "<span class='he_f2'>" + target.substring(0,20)+"..." + "</span>" +
                         "<p class='he_f2' style='word-wrap: break-word;'>" + datainfo.substring(0,20)+"..." + "</p>" +

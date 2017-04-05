@@ -18,4 +18,6 @@ public interface UserService {
     List<User> getAll();
 
     void delete(String id);
+
+    void update(User user);
 }

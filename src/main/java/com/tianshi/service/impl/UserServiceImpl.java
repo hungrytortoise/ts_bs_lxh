@@ -68,4 +68,8 @@ public class UserServiceImpl implements UserService {
         userDao.deleteByPrimaryKey(id);
     }
 
+    public void update(User user) {
+        userDao.updateByPrimaryKey(user) ;
+    }
+
 }

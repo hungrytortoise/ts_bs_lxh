@@ -83,9 +83,9 @@ public class ShowInfoController extends baseController {
                        String  info,String t_info,String t_advance,String market,String stage)
     {
         ShowInfo showInfo = new ShowInfo() ;
-        double d =Math.random();
-        String id =(int)d*1000+"";
-
+        Random random = new Random();
+        Integer id2 = random.nextInt(2147483647) ;
+        String id = id2.toString() ;
 
         Date date = new Date() ;
         Timestamp timestamp = new Timestamp(date.getTime());
@@ -104,6 +104,8 @@ public class ShowInfoController extends baseController {
         showInfo.settAdvance(t_advance);
         showInfo.setMarket(market);
         showInfo.setStage(stage);
+
+        System.out.println(showInfo.toString()+"+++++++++++++");
         showInfoService.add(showInfo) ;
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code",0) ;

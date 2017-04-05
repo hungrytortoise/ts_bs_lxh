@@ -17,7 +17,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
-                <a class="navbar-brand" href="/">网站标题（自定义）</a>
+                <a class="navbar-brand" href="/">科研成果转化平台</a>
                 <a href="../demand.jsp" class="top_lis" target="_blank" id="mydemod" style="display: none ;">需求管理</a>
                 <a id ="tmanage" href="../resultManage.jsp" class="top_lis" target="_blank" style="display:none ;">技术成果管理</a>
                 <a id="usermanage" href="../userManage.jsp" class="top_lis" target="_blank" style="display:none ;">人员管理</a>

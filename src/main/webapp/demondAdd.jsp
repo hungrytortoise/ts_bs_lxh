@@ -82,7 +82,8 @@
         $("#buttons_submit").click(function(){
             var detail = $("#detail").val();
             var title = $("#title").val();
-            var keyword = $("#keyword").val();
+            var keyword = $("#select").val();
+            alert(keyword)
             var company = $("#company").val();
             var phone = $.trim($("#phone").val());
             var reg = /^[0-9-]+$/;
@@ -257,147 +258,18 @@ $(document).ready(function() {
 <script src="../js/perfect-scrollbar-0.4.1.with-mousewheel.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/layer/layer.js" type="text/javascript" charset="utf-8"></script>  
 
-		<div class="dialog invite-others-dialog disp" >
-			<h1>邀请同事加入科学家在线ScientistIn：</h1>
-			<form action="" method="post">
-				<div class="inp_form top_ls" style="margin-top:30px;margin-bottom:0;">
-					<div class="lo_re_inp_two">
-						<div class="lo_re_inp">
-							<!-- <label><span class="til">姓名 : </span></label> -->
-							<input type="text" class="invite-others-name" value="" placeholder="请输入同事姓名" />
-						</div>
-						<div class="lo_re_inp">
-							<!-- <label><span class="til">邮箱 : </span></label> -->
-							<input type="text" class="invite-others-email" value="" placeholder="请输入同事邮箱" />
-						</div>
-						<div class="clear"></div>
-					</div>
-					<a class="send">发送</a>
-				</div>
-			</form>
-			
-			<div class="clear"></div>
-		</div>
-		<div class="dialog invite-scientist-dialog disp invite_yq_adro">
-			<h1>推荐学者加入科学家在线ScientistIn：</h1>
-			<form action="" method="post">
-				<div class="inp_form top_ls" >
-					<div class="lo_re_inp_two">
-						<div class="lo_re_inp">
-							<input type="text" name="username" class="username" value="" placeholder="请输入学者姓名">
-						</div>
-						<div class="lo_re_inp">
-							<input type="text" name="email" class="email" value="" placeholder="请输入学者邮箱">
-						</div>
-						<div class="clear"></div>
-					</div>
-				</div>
-				<a class="send">发送</a>
-			</form>
-			<div class="clear"></div>
-		</div>
 		<div class='top_paosi'>
 		<div class="head_cons">
 			<a href="/" class="home_logos_new">
-				<img src="/img/logonew.png">
+				<h2>科学技术转换平台</h2>
 			</a>
-			<ul class="left_tab_ul">
-				
-				<li><a href="/" class="">自定义<span id="headerFlowNum" style="left:41px;"></span></a></li>
-				<li><a href="/" class=" xq_acti">自定义</a></li>
-				<li><a href="/" class="">自定义</a></li>
-				
-
-			 <!--
-				<li><a  href="/user/dataAnalysis.do" class="">大数据</a></li>
-			大数据 -->
-				
-			</ul>
 			<div class="rig_dip">
-				<ul class="right_tab_ul">
-					<li>
-						<input type="text" name="keyword" id="search-entrance-keyword" class="inp_sp" value="" placeholder="搜索" />
-						<i class="se_icon"></i>
-						<input type="button" value="" class="inp_sub" id="search-entrance-button"/>
-					</li>
 
-					<li>
-						<a class="top_icons top_icons_yj" href="/user/mailbox.do">
-							<span id="headerMsgNum"></span>
-						</a>
-					</li>
-					<li>
-						<a  href="javascript:;" id="iframe_notify" class="top_icons top_icons_tz shake-rotate iframe_notify_btn active  shake-constant "></a>
-					</li>
-					<li><a href="javascript:void(0);" class="top_icons top_icons_change" onclick="return changeSin('sin');" title="客户场景"></a></li>
-					<li id="sec_ewm">
-						<a class="list" href="javascript:void(0);">
-							<img src="/img/ewm.jpg" style="width:27px;">
-						</a>
-						<div class="diaga_ewm" style="display:none;">
-							<div class="ewm_lays">
-								<img src="/img/ewm.jpg">
-								<span>
-									使用微信扫描该二维码，或在微信中搜索公众号“科学家在线”，关注公众号。随时随地接收你的学术动态。
-								</span>
-							</div>
-						</div>
-					</li>
-					<li class="use">
-						<img id="headerUserPortrait" src="http://rep.scientistin.com/default/portrait.png"/>
-						<i></i>
-						<div class="logout disp menus_top_downs">
-						<ul>
-							<li><a href="/">首页</a></li>
-
-							<li class="invite-others">
-								邀请同事
-
-							</li>
-							<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/info.do">账号设置</a></li>
-							<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/task.do">上传进度</a></li>
-
-							<li><a href="javascript:void(0);" class="change-sin" onclick="return changeSin('sin');">客户场景</a></li>
-							<li><a href="/logout.do">退出</a></li>
-						</ul>
-						</div>
-					</li>
-				</ul>
 			</div>
 		</div>
 	</div>
 	
-	<div class="dialog bp-dialog disp" >
-		<h1>提交可转换成果或商业计划书：</h1>
-			<div class="inp_form top_ls" style="margin-top:30px;margin-bottom:0;">
-				<div class="tit_bp_type">
-					<label>请选择提交的内容类型</label>
-					<ul>
-						<li class="active">可转换成果</li>
-						<li>商业计划书</li>
-					</ul>
-				</div>
-				<div class="lo_re_inp_two">
-					<div class="lo_re_inp">
-						<input type="text" class="tit_bp_title" value="" placeholder="请输入标题" />
-					</div>
-					<div class="lo_re_inp">
-						<input type="text" class="tit_bp_keyword" value="" placeholder="请输入关键词，空格分开多个关键词" />
-					</div>
-					<div class="lo_re_inp">
-						<textarea rows="5" class="tit_bp_topic" placeholder="请输入摘要信息"></textarea>
-					</div>
-					<div class="lo_re_inp">
-						<a href="javascript:;" onclick="bp_upload_image()"><img src="/img/uplas.png" style="width:30px;"/>
-						<span class="bp-upload-word-span">上传文件(20MB以内的文件或图片）</span>
-						</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<a class="send">提交</a>
-			</div>
-		<div class="clear"></div>
-	</div>
+
 	
 	<form action="/api/bp-upload" enctype="multipart/form-data" method="post" class="bp_file_upload">
 		<input type="file" class="hide bp_file" name="file" id="bp-upload-multipart-id" />
@@ -440,7 +312,12 @@ $(document).ready(function() {
 				</div>
 
 	            <div class="form-group res_mm group_lef">
-				    <span>关键词</span><input type="text" class="form-control" id="keyword" placeholder="3个左右，逗号','隔开" value="">
+				    <span>合作状态</span>
+					<select id="select" class="form-control">
+						<option value ="发布">发布</option>
+						<option value ="合作中">合作中</option>
+						<option value="完成">完成</option>
+					</select>
 				</div>
 		  
 	            <div class="form-group res_mm group_lef">

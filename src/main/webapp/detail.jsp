@@ -34,7 +34,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header zhiye_top_nav">
-                <a class="navbar-brand" href="index.jsp">网站标题（自定义）</a>
+                <a class="navbar-brand" href="/index.jsp">网站标题（自定义）</a>
                 <a href="" class="top_lis" target="_blank">菜单名称1</a>
                 <a href="" class="top_lis" target="_blank">菜单名称2</a>
                 <a href="" class="top_lis" target="_blank">菜单名称3</a>

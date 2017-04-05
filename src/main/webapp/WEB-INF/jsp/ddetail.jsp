@@ -353,26 +353,11 @@ function changeSin(sen){
 		</div>
 		<div class='top_paosi'>
 		<div class="head_cons">
-			<a class="navbar-brand" href="/">网站标题（自定义）</a>
-			<ul class="left_tab_ul">
-				<li><a href="/" class="">自定义<span id="headerFlowNum" style="left:41px;"></span></a></li>
-				<li><a href="/" class=" xq_acti">自定义</a></li>
-				<li><a href="/" class="active">自定义</a></li>
+			<a class="navbar-brand" href="/">科研成果转化平台</a>
 
-			 <!--
-				<li><a  href="/user/dataAnalysis.do" class="">大数据</a></li>
-			大数据 -->
-				
-			</ul>
+
+
 			<div class="rig_dip">
-				<ul class="right_tab_ul">
-					<li>
-						<input type="text" name="keyword" id="search-entrance-keyword" class="inp_sp" value="" placeholder="搜索" />
-						<i class="se_icon"></i>
-						<input type="button" value="" class="inp_sub" id="search-entrance-button"/>
-					</li>
-
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -444,12 +429,6 @@ function changeSin(sen){
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 ma_center bs_co_ff">
-				<h1 class="issue_h1"><i class="btn btn-success tit_icons tit_icons_">节能环保</i>${detail.target}
-				<div class="bdsharebuttonbox" data-tag="share_1" style="float:right;margin-left:20px;margin-top: -5px">
-					<em style="float:left;color:#999;line-height:32px;font-size:16px;padding-top:5px;">分享到：</em><a class="bds_weixin" data-cmd="weixin"></a>
-				</div>
-				
-					
 					<a id="btnInterest" class="btn btn-danger" style="float:right;visibility:hidden ;" >删除</a>
 					
 				
@@ -465,7 +444,7 @@ function changeSin(sen){
 					</div>
 					<div class="row">
 						<div class="col-md-4">
-							<font class="t_bold">关键词：</font>${detail.keyword}
+							<font class="t_bold">合作状态：</font>${detail.keyword}
 						</div>
 						<div class="col-md-2">
 							<font class="t_bold">客户类型：</font> ${detail.cKind}
@@ -499,64 +478,7 @@ function changeSin(sen){
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-md-2 t_bold">
-							处理进度：
-						</div>
-						<div class="col-md-10 no_pa_left">
-							<div class="speed_progress">
-								<ul>
-							
-							
-								  <li class="active">
-								  	<span class="ico"><i class="glyphicon glyphicon-file "></i>
-								 
-								  	</span>
-								  	<span class="pro_name">提交需求</span>
-								  	<span class="pro_time">2016-11-24 20:43</span>
-								  	
-								  	<span class="lins"></span>
-								  </li>
-							
-							
-								  <li class="active">
-								  	<span class="ico"><i class="glyphicon glyphicon-saved"></i>
-								 
-								  	</span>
-								  	<span class="pro_name">需求确认</span>
-								  	<span class="pro_time">2016-11-24 21:17</span>
-								  	<a target="_blank" style="color:#0F63A8;" href="/issue/showMatchesInDB.do?issueid=892310e90692fb50d32a246f9fe4f162">查看匹配专家</a> 
-								  	<span class="lins"></span>
-								  </li>
-							
-							
-							 	<li>
-								 	<span class="ico"><i class="glyphicon glyphicon-pushpin"></i>
-								 	</span>
-									<span class="pro_name">需求签约</span>
-									<span class="lins"></span>
-								</li> 
-							
-							
-							 	<li>
-								 	<span class="ico"><i class="glyphicon glyphicon-wrench"></i>
-								 	</span>
-									<span class="pro_name">需求服务</span>
-									<span class="lins"></span>
-								</li> 
-							
-							
-							 	<li>
-								 	<span class="ico"><i class="glyphicon glyphicon-ok"></i>
-								 	</span>
-									<span class="pro_name">需求关闭</span>
-									<span class="lins"></span>
-								</li> 
-							
-								</ul>
-							</div>
-						</div>
-					</div>
+
 					
 					
 				</div>

@@ -133,5 +133,16 @@ public class UserController extends baseController {
         return  jsonObject.toString();
 
     }
-
+    @RequestMapping("/update") //password":password,"name":name,"gender":gender,"company":company
+    public String update(String password,String name,String gender,String company){
+        //获取原来的对象
+        User user =userService.getByUsername(this.login_username) ;
+        user.setNickname(name);
+        user.setPassword(password);
+        user.setCompany(company);
+        user.setGender(gender);
+        System.out.println(user.toString());
+        userService.update(user) ;
+        return "redirect:/index" ;
+    }
 }
