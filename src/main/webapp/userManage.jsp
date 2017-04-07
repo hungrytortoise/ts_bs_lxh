@@ -268,14 +268,12 @@ $(document).ready(function() {
 			<div class="clear"></div>
 		</div>
 <div class="head_cons">
-	<a href="/" class="home_logos_new">
-		<img src="/img/logonew.png">
-	</a>
+	<div class="navbar-header zhiye_top_nav">
+		<a class="navbar-brand" href="index.jsp">科研成果转化平台</a>
+	</div>
 	<ul class="left_tab_ul">
 
-		<li><a href="/" class="">自定义<span id="headerFlowNum" style="left:41px;"></span></a></li>
-		<li><a href="/" class=" xq_acti">自定义</a></li>
-		<li><a href="/" class="">自定义</a></li>
+		<%--<li><a href="/" class="">自定义<span id="headerFlowNum" style="left:41px;"></span></a></li> --%>
 
 
 		<!--
@@ -284,55 +282,6 @@ $(document).ready(function() {
 
 	</ul>
 	<div class="rig_dip">
-		<ul class="right_tab_ul">
-			<li>
-				<input type="text" name="keyword" id="search-entrance-keyword" class="inp_sp" value="" placeholder="搜索" />
-				<i class="se_icon"></i>
-				<input type="button" value="" class="inp_sub" id="search-entrance-button"/>
-			</li>
-
-			<li>
-				<a class="top_icons top_icons_yj" href="/user/mailbox.do">
-					<span id="headerMsgNum"></span>
-				</a>
-			</li>
-			<li>
-				<a  href="javascript:;" id="iframe_notify" class="top_icons top_icons_tz shake-rotate iframe_notify_btn active  shake-constant "></a>
-			</li>
-			<li><a href="javascript:void(0);" class="top_icons top_icons_change" onclick="return changeSin('sin');" title="客户场景"></a></li>
-			<li id="sec_ewm">
-				<a class="list" href="javascript:void(0);">
-					<img src="/img/ewm.jpg" style="width:27px;">
-				</a>
-				<div class="diaga_ewm" style="display:none;">
-					<div class="ewm_lays">
-						<img src="/img/ewm.jpg">
-						<span>
-									使用微信扫描该二维码，或在微信中搜索公众号“科学家在线”，关注公众号。随时随地接收你的学术动态。
-								</span>
-					</div>
-				</div>
-			</li>
-			<li class="use">
-				<img id="headerUserPortrait" src="http://rep.scientistin.com/default/portrait.png"/>
-				<i></i>
-				<div class="logout disp menus_top_downs">
-					<ul>
-						<li><a href="/">首页</a></li>
-
-						<li class="invite-others">
-							邀请同事
-
-						</li>
-						<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/info.do">账号设置</a></li>
-						<li style="border-bottom:1px solid #dbdbdb;"><a href="/user/task.do">上传进度</a></li>
-
-						<li><a href="javascript:void(0);" class="change-sin" onclick="return changeSin('sin');">客户场景</a></li>
-						<li><a href="/logout.do">退出</a></li>
-					</ul>
-				</div>
-			</li>
-		</ul>
 	</div>
 </div>
 	
@@ -530,7 +479,7 @@ $(document).ready(function() {
                         var content = "<tr><td>"+user.id+"</td><td>"+user.name+"</td><td>"+
                             user.gender+"</td><td>"+user.phone+"</td><td>"+user.nickname+"</td><td>"+
                             user.identity+"</td><td>"+user.username+"</td><td>"+user.password+"</td><td>"+
-                            "<a href='/user/delete?id="+user.id+"'>删除</a></td><td><a>修改</a></td></tr>" ;
+                            "<a href='/user/delete?id="+user.id+"'>删除</a></td><td><a href='/update2.jsp?id="+user.id+"'>修改权限</a></td></tr>" ;
 
                         head += content;
 

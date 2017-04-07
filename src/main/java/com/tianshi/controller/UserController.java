@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
@@ -28,11 +29,30 @@ public class UserController extends baseController {
     @ResponseBody
     public String getUserById(HttpServletRequest request, Model model){
         String id = request.getParameter("id");
-        Integer id2 = Integer.parseInt(id) ;
-        User user = userService.selectByPrimaryKey(id2) ;
+
+        User user = userService.selectByPrimaryKey(id) ;
         this.responseObj.put("company",user.getCompany()) ;
 
         return this.sendResponse() ;
+    };
+    @RequestMapping("/getById2")
+    @ResponseBody
+    public String getUserById(){
+        String id = this.login_userid ;
+        User user = userService.selectByPrimaryKey(id) ;
+        JSONObject jsonObject= new JSONObject();
+        jsonObject.put("user",user);
+        System.out.println("获取到的对象是："+user.toString());
+        return jsonObject.toString() ;
+    };
+    @RequestMapping("/getById3")
+    @ResponseBody
+    public String getUserById(String id){
+        User user = userService.selectByPrimaryKey(id) ;
+        JSONObject jsonObject= new JSONObject();
+        jsonObject.put("user",user);
+        System.out.println("获取到的对象是："+user.toString());
+        return jsonObject.toString() ;
     };
 
 
@@ -73,7 +93,7 @@ public class UserController extends baseController {
         //检查用户名
         //插入
         User user = new User();
-        String uuid =UUID.randomUUID().toString();
+        String uuid =UUID.randomUUID().toString().replace("-","").substring(0,8);
         user.setId(uuid);
         user.setName(name);
         user.setPassword(password);
@@ -136,13 +156,49 @@ public class UserController extends baseController {
     @RequestMapping("/update") //password":password,"name":name,"gender":gender,"company":company
     public String update(String password,String name,String gender,String company){
         //获取原来的对象
-        User user =userService.getByUsername(this.login_username) ;
+        User user =null ;
+        try{
+            user =userService.getByUsername(this.login_username) ;
+
+
         user.setNickname(name);
         user.setPassword(password);
         user.setCompany(company);
         user.setGender(gender);
-        System.out.println(user.toString());
+        }catch (Exception e){
+
+        }
+        this.login_nickname=user.getNickname();
+        System.out.println("修改后的对象是"+user.toString());
+       userService.update(user) ;
+        JSONObject jsonObject = new JSONObject() ;
+        jsonObject.put("code",0) ;
+
+
+        return jsonObject.toString() ;
+    }
+    @RequestMapping("/update2") //password":password,"name":name,"gender":gender,"company":company
+    @ResponseBody
+    public String update2(String id,String password,String name,String gender,String identity){
+        //获取原来的对象
+        User user =null ;
+        try{
+            user =userService.selectByPrimaryKey(id) ;
+            int identity2 = Integer.parseInt(identity) ;
+            user.setNickname(name);
+            user.setPassword(password);
+            user.setIdentity(identity2);
+            user.setGender(gender);
+        }catch (Exception e){
+
+        }
+        this.login_nickname=user.getNickname();
+        //System.out.println(user.toString());
         userService.update(user) ;
-        return "redirect:/index" ;
+        JSONObject jsonObject = new JSONObject() ;
+        jsonObject.put("code",0) ;
+        System.out.println("identity"+identity);
+
+        return jsonObject.toString() ;
     }
 }

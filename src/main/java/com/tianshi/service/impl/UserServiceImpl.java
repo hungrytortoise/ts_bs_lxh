@@ -15,7 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao ;
-    public User selectByPrimaryKey(Integer id) {
+    public User selectByPrimaryKey(String id) {
         return userDao.selectByPrimaryKey(id);
     }
 

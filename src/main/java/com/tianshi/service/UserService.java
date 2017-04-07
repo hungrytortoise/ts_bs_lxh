@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/10 0010.
  */
 public interface UserService {
-    User selectByPrimaryKey(Integer id) ;
+    User selectByPrimaryKey(String id) ;
 
     User getByUsername(String username);
     Integer  checkLogin(String username,String password);

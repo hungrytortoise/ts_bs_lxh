@@ -42,9 +42,9 @@
                 <div class="form-group">
                     密码：<input type="text" class="form-control" id="password" placeholder="请设置登录密码">
                 </div>
-                <p>请填写机构或企业名称和地址信息</p>
+                <p> 0：管理 1：高校 2：企业</p>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="company" placeholder="请输入机构或企业名称">
+                    <input type="text" class="form-control" id="identity" placeholder="0：管理 1：高校 2：企业">
                 </div>
                 <br />
                 <input type="submit" value="修改" class="btn btn-success btn-block btn-lg bg_color" id="buttons_submit"/>
@@ -122,23 +122,29 @@
     }
     var rStep = "sin";
     $(function(){
+        var id =getQueryString("id")
         $.ajax({
             type: "POST",
             dataType:"json",
-            url: "/user/getById2",
-            data:{},
+            url: "/user/getById3",
+            data:{"id":id},
             success:function (data) {
                 var name =data.user.nickname;
                 var gender=data.user.gender ;
                 var passwd = data.user.password ;
-                var company = data.user.company ;
+                var identity = data.user.identity ;
                 $("#nickname").val(name);
                 $("#gender").val(gender) ;
                 $("#password").val(passwd) ;
-                $("#company").val(company) ;
+                $("#identity").val(identity) ;
             }
 
         })
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
 
         myReload();
         $("#ser_yzm").click(function(){
@@ -180,28 +186,30 @@
         });
 
         $("#buttons_submit").click(function(){
+            var id =getQueryString("id")
             var password = $("#password").val();
             var name = $("#nickname").val();
             var gender = $("#gender").val();
-            var idendity = $("#idendity").val();
+            var identity = $("#identity").val();
+            alert(identity)
             if($.trim(name) != ""  && $.trim(password) != ""){
                 $.ajax({
                     type: "POST",
                     dataType:"json",
-                    url: "/user/update",
-                    data:{"password":password,"name":name,"gender":gender,"idendity":idendity},
+                    url: "/user/update2",
+                    data:{"id":id,"password":password,"name":name,"gender":gender,"identity":identity},
                     success: function(data){
                         console.log(data);
                         if(data.code==0){
-                            layer_tips(data.data);
-                            window.location.href="/";
+                            layer_tips('修改成功');
+                            window.location.href="/userManage.jsp";
 
                         }else{
                             layer_tips(data.data);
                         }
                     },
                     error: function (e) {
-                        layer_tips('修改成功');
+                        layer_tips('修改失败');
                         window.location.href="/index.jsp";
                     }
                 });
